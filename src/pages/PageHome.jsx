@@ -1,14 +1,16 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
+import FilterProduct from "../components/FilterProduct"
 
-export default function PageHome(){
+export default function PageHome() {
    const author = useSelector(state => state.author)
    useEffect(() => {
       console.log('newState Author', author);
-   },[author])
+   }, [author])
    return (
       <>
          <h2 className="text-red-700">Home Page</h2>
+         <FilterProduct />
       </>
    )
 }

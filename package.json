@@ -1,7 +1,7 @@
 {
   "name": "demo_deploy",
   "version": "0.1.0",
-  "homepage": "https://github.com/ivantpham/Project_HH",
+  "homepage": "https://ivantpham.github.io/Project_HH/",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { dataProduct } from '../api/datadraw';
+import React from 'react'
+import { useState } from 'react';
+import { dataProduct } from '../api/datadraw'
 
 const FilterProduct = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -7,39 +8,29 @@ const FilterProduct = () => {
 
     const filterProducts = () => {
         let filteredProducts = dataProduct.products;
-
         if (selectedCategory) {
-            filteredProducts = filteredProducts.filter(
-                (product) => product.category === selectedCategory
-            );
+            filteredProducts = filteredProducts.filter(product => product.category === selectedCategory);
         }
-
         if (selectedBrand) {
-            filteredProducts = filteredProducts.filter(
-                (product) => product.brand === selectedBrand
-            );
+            filteredProducts = filteredProducts.filter(product => product.brand === selectedBrand);
         }
-
         return filteredProducts;
-    };
+    }
 
     const handleCategoryFilter = (category) => {
-        if (selectedCategory === category) {
-            setSelectedCategory(null);
-        } else {
-            setSelectedBrand(null);
-            setSelectedCategory(category);
-        }
-    };
+        setSelectedBrand(null);
+        setSelectedCategory(category);
+    }
 
     const handleBrandFilter = (brand) => {
-        if (selectedBrand === brand) {
-            setSelectedBrand(null);
-        } else {
-            setSelectedBrand(brand);
-            setSelectedCategory(null);
-        }
-    };
+        setSelectedBrand(brand);
+        setSelectedCategory(null);
+    }
+
+
+
+
+
 
     return (
         <div>
@@ -53,18 +44,21 @@ const FilterProduct = () => {
                 <button onClick={() => handleCategoryFilter('powerbanks')}>Sạc Dự Phòng</button>
                 <button onClick={() => handleCategoryFilter('mouses')}>Chuột</button>
                 <button onClick={() => handleCategoryFilter('docks')}>Dock Sạc</button>
+
+
+
+
             </div>
 
-            <div>
+            <div >
                 <button onClick={() => handleBrandFilter(null)}>All Brands</button>
                 <button onClick={() => handleBrandFilter('Apple')}>Apple</button>
                 <button onClick={() => handleBrandFilter('Samsung')}>Samsung</button>
                 <button onClick={() => handleBrandFilter('OPPO')}>OPPO</button>
                 <button onClick={() => handleBrandFilter('Huawei')}>Huawei</button>
             </div>
-
             <div className='grid grid-cols-6 gap-6'>
-                {filterProducts().map((product) => (
+                {filterProducts().map(product => (
                     <div key={product.id}>
                         <img src={product.thumbnail} alt={product.title} />
                         <h3>{product.title}</h3>
@@ -73,7 +67,7 @@ const FilterProduct = () => {
                 ))}
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default FilterProduct;

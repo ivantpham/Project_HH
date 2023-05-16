@@ -1,4 +1,4 @@
-import { createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 import PageHome from '@Pages/PageHome';
 import PageProducts from '@Pages/PageProducts';
 import MainLayout from '@Layout/MainLayout';
@@ -18,11 +18,11 @@ export const routes = [
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<MainLayout />}>
-    {routes.map(i => 
-        <Route key={i.path} path={i.path} element={<i.component />} />)
+    {routes.map(i =>
+      <Route key={i.path} path={i.path} element={<i.component />} />)
     }
   </Route>
-), {basename: "/react-ecommerce"});
+), { basename: "/Project_HH" });
 
 
- export {router}
+export { router }

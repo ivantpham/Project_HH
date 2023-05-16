@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { dataProduct } from '../api/datadraw'
+import { dataProduct } from '../api/dataDrawFilter'
 
 const FilterProduct = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);

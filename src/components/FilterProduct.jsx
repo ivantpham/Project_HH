@@ -1,74 +1,66 @@
 import React, { useState } from 'react';
-import { dataProduct } from '../api/datadraw';
+import { getDataProduct } from '../api/dataDrawFilter'
+
+
+
 
 const FilterProduct = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [filter, setFilter] = useState('All');
+    const [brandFilter, setBrandFilter] = useState('All');
 
-    const filterProducts = () => {
-        let filteredProducts = dataProduct.products;
-
-        if (selectedCategory) {
-            filteredProducts = filteredProducts.filter(
-                (product) => product.category === selectedCategory
-            );
+    const filteredProducts = getDataProduct().products.filter(product => {
+        if (filter === 'All') {
+            return true;
         }
-
-        if (selectedBrand) {
-            filteredProducts = filteredProducts.filter(
-                (product) => product.brand === selectedBrand
-            );
+        return product.category === filter;
+    }).filter(product => {
+        if (brandFilter === 'All') {
+            return true;
         }
+        return product.brand === brandFilter;
+    });
 
-        return filteredProducts;
+    const handleCategoryFilter = category => {
+        setFilter(category);
+        setBrandFilter('All');
     };
 
-    const handleCategoryFilter = (category) => {
-        if (selectedCategory === category) {
-            setSelectedCategory(null);
-        } else {
-            setSelectedBrand(null);
-            setSelectedCategory(category);
-        }
-    };
-
-    const handleBrandFilter = (brand) => {
-        if (selectedBrand === brand) {
-            setSelectedBrand(null);
-        } else {
-            setSelectedBrand(brand);
-            setSelectedCategory(null);
-        }
+    const handleBrandFilter = brand => {
+        setBrandFilter(brand);
     };
 
     return (
         <div>
-            <h1>Sản Phẩm Của Chúng Tôi</h1>
-            <div>
-                <button onClick={() => handleCategoryFilter(null)}>All Categories</button>
-                <button onClick={() => handleCategoryFilter('smartphones')}>Điện Thoại</button>
-                <button onClick={() => handleCategoryFilter('laptops')}>Laptop</button>
-                <button onClick={() => handleCategoryFilter('tablets')}>Tablet</button>
-                <button onClick={() => handleCategoryFilter('watches')}>Đồng Hồ</button>
-                <button onClick={() => handleCategoryFilter('powerbanks')}>Sạc Dự Phòng</button>
-                <button onClick={() => handleCategoryFilter('mouses')}>Chuột</button>
-                <button onClick={() => handleCategoryFilter('docks')}>Dock Sạc</button>
-            </div>
 
-            <div>
-                <button onClick={() => handleBrandFilter(null)}>All Brands</button>
-                <button onClick={() => handleBrandFilter('Apple')}>Apple</button>
-                <button onClick={() => handleBrandFilter('Samsung')}>Samsung</button>
-                <button onClick={() => handleBrandFilter('OPPO')}>OPPO</button>
-                <button onClick={() => handleBrandFilter('Huawei')}>Huawei</button>
-            </div>
-
+            <button onClick={() => handleCategoryFilter('All')}>Tất Cả Sản Phẩm</button>
+            <button onClick={() => handleCategoryFilter('smartphones')}>Điện Thoại</button>
+            <button onClick={() => handleCategoryFilter('laptops')}>Laptop</button>
+            <button onClick={() => handleCategoryFilter('tablets')}>Tablet</button>
+            <button onClick={() => handleCategoryFilter('watches')}>Đồng Hồ</button>
+            <button onClick={() => handleCategoryFilter('powerbanks')}>Sạc Dự Phòng</button>
+            <button onClick={() => handleCategoryFilter('mouses')}>Chuột</button>
+            <button onClick={() => handleCategoryFilter('docks')}>Dock Sạc</button>
+            <br />
+            <button onClick={() => handleBrandFilter('All')}>All Brands</button>
+            {filteredProducts
+                .reduce((brands, product) => {
+                    if (!brands.includes(product.brand)) {
+                        brands.push(product.brand);
+                    }
+                    return brands;
+                }, [])
+                .map(brand => (
+                    <button key={brand} onClick={() => handleBrandFilter(brand)}>
+                        {brand}
+                    </button>
+                ))}
+            <br />
             <div className='grid grid-cols-6 gap-6'>
-                {filterProducts().map((product) => (
+                {filteredProducts.map(product => (
                     <div key={product.id}>
-                        <img src={product.thumbnail} alt={product.title} />
+                        <img src={product.thumbnail} alt={product.id} />
                         <h3>{product.title}</h3>
-                        <p>{product.price}</p>
+                        <p>Price: {product.price}</p>
                     </div>
                 ))}
             </div>

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -57,10 +59,11 @@ function App() {
     <div className="App d-flex align-items-center justify-content-center vh-100">
       {!isLoggedIn && (
         <div className="App-login">
-          <h3>Đăng nhập</h3>
-          {loginError && <div>{loginError}</div>}
+          <h3 className="mb-4">Đăng nhập</h3>
+          {loginError && <div className="alert alert-danger">{loginError}</div>}
 
           <input
+            className="form-control mb-3"
             placeholder="Email..."
             value={loginEmail}
             onChange={(event) => {
@@ -68,6 +71,7 @@ function App() {
             }}
           />
           <input
+            className="form-control mb-3"
             type="password"
             placeholder="Password..."
             value={loginPassword}
@@ -75,8 +79,13 @@ function App() {
               setLoginPassword(event.target.value);
             }}
           />
-
-          <button onClick={login}>Đăng nhập</button>
+          <div className="signup-box-text">
+            <div className="signup-text">Bạn chưa có tài khoản???</div>
+            <Link className="signup" to={'/sign-up'} >
+              <a href="" className="signup-link">Đăng Ký Ngay</a>
+            </Link>
+          </div>
+          <button className="btn btn-primary" onClick={login}>Đăng nhập</button>
         </div>
       )}
 
@@ -84,10 +93,11 @@ function App() {
         <>
           <h4>Đăng nhập thành công:</h4>
           {user?.email}
-          <button onClick={logout}>Đăng xuất</button>
+          <button className="btn btn-danger" onClick={logout}>Đăng xuất</button>
         </>
       )}
     </div>
+
   );
 }
 

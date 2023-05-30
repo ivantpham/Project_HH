@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -72,12 +74,13 @@ function App() {
 
   return (
     <div className="App d-flex align-items-center justify-content-center vh-100">
-      {!isLoggedIn && ( // Thay đổi điều kiện hiển thị của App-sign-up
+      {!isLoggedIn && (
         <div className="App-sign-up">
-          <h3> Tạo Tài Khoản </h3>
-          {registerError && <div>Mật Khẩu Không Trùng Khớp!</div>}
+          <h3 className="mb-3"> Tạo Tài Khoản </h3>
+          {registerError && <div className="alert alert-danger">Mật Khẩu Không Trùng Khớp!</div>}
 
           <input
+            className="form-control mb-2"
             placeholder="Email..."
             value={registerEmail}
             onChange={(event) => {
@@ -85,6 +88,7 @@ function App() {
             }}
           />
           <input
+            className="form-control mb-2"
             placeholder="Password..."
             value={registerPassword}
             onChange={(event) => {
@@ -92,26 +96,32 @@ function App() {
             }}
           />
           <input
-            className="pwcf"
+            className="form-control mb-2 pwcf"
             placeholder="Password Confirm..."
             value={registerPasswordConfirm}
             onChange={(event) => {
               setRegisterPasswordConfirm(event.target.value);
             }}
           />
-
-          <button onClick={register}> Create User</button>
+          <div className="login-box-text">
+            <div className="login-text">Bạn đã có tài khoản???</div>
+            <Link className="login" to={'/sign-in'} >
+              <a href="" className="login-link">Đăng Nhập Ngay</a>
+            </Link>
+          </div>
+          <button className="btn btn-primary" onClick={register}> Create User</button>
         </div>
       )}
 
-      {isLoggedIn && ( // Thay đổi điều kiện hiển thị của User Logged In
+      {isLoggedIn && (
         <>
           <h4> Xin Chào Mừng: </h4>
           {user?.email}
-          <button onClick={logout}> Sign Out </button>
+          <button className="btn btn-danger" onClick={logout}> Sign Out </button>
         </>
       )}
     </div>
+
   );
 }
 

@@ -1,0 +1,62 @@
+header .headers {
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  z-index: 101;
+  padding: 0 20px;
+  background: #f4f4f4;
+}
+header .nav {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+header .nav .nav_item {
+  column-gap: 25px;
+}
+header .nav .nav_link,
+header .nav .button-login {
+  color: #019a82;
+}
+header .nav .nav_link:hover {
+  color: #0cbde4;
+}
+header .nav .button-login:hover {
+  color: #0cbde4;
+  border: 2px solid #0cbde4;
+}
+header .nav .button-login {
+  padding: 6px 24px;
+  border: 2px solid #019a82;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+header .nav .button-login:active {
+  transform: scale(0.97);
+}
+header .nav .success_sign {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #019a82;
+  border-radius: 8px;
+}
+header .nav .success_sign .image_account {
+  width: 30px;
+  margin: 0 10px;
+}
+header .nav .success_sign .name_account {
+  margin: 0 10px;
+}
+header .nav .success_sign img {
+  border-radius: 50%;
+}
+header nav,
+header .nav_item {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}

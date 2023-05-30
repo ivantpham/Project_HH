@@ -15,12 +15,11 @@ function App() {
   const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
   const [registerError, setRegisterError] = useState("");
 
-
-
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Thêm biến isLoggedIn
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -29,6 +28,10 @@ function App() {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    setIsLoggedIn(!!user?.email); // Cập nhật giá trị của isLoggedIn khi user.email thay đổi
+  }, [user]);
 
   const register = async () => {
     try {
@@ -70,49 +73,41 @@ function App() {
 
   return (
     <div className="App d-flex align-items-center justify-content-center vh-100">
-      <div className="App-sign-up">
-        <h3> Tạo Tài Khoản </h3>
-        {registerError && <div>Mật Khẩu Không Trùng Khớp!</div>}
+      {!isLoggedIn && ( // Thay đổi điều kiện hiển thị của App-sign-up
+        <div className="App-sign-up">
+          <h3> Tạo Tài Khoản </h3>
+          {registerError && <div>Mật Khẩu Không Trùng Khớp!</div>}
 
-        <input
-          placeholder="Email..."
-          value={registerEmail}
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          value={registerPassword}
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-          }}
-        />
-        <input
-          className="pwcf"
-          placeholder="Password Confirm..."
-          value={registerPasswordConfirm}
-          onChange={(event) => {
-            setRegisterPasswordConfirm(event.target.value);
-          }}
-        />
+          <input
+            placeholder="Email..."
+            value={registerEmail}
+            onChange={(event) => {
+              setRegisterEmail(event.target.value);
+            }}
+          />
+          <input
+            placeholder="Password..."
+            value={registerPassword}
+            onChange={(event) => {
+              setRegisterPassword(event.target.value);
+            }}
+          />
+          <input
+            className="pwcf"
+            placeholder="Password Confirm..."
+            value={registerPasswordConfirm}
+            onChange={(event) => {
+              setRegisterPasswordConfirm(event.target.value);
+            }}
+          />
 
-        <button onClick={register}> Create User</button>
-      </div>
+          <button onClick={register}> Create User</button>
+        </div>
+      )}
 
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-
-      {/* LOGIN */}
-
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-
-
-
-      {user?.email && (
+      {isLoggedIn && ( // Thay đổi điều kiện hiển thị của User Logged In
         <>
-          <h4> User Logged In: </h4>
+          <h4> Xin Chào Mừng: </h4>
           {user?.email}
           <button onClick={logout}> Sign Out </button>
         </>

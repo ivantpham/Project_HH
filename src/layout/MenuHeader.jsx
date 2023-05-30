@@ -1,13 +1,34 @@
 import "../assets/less/header.less";
 import { signOut } from "firebase/auth";
 import { routes } from "@Router/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { iconClose, iconHamburger } from "@Assets/icons";
 import { Link } from 'react-router-dom';
 
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../firebase/fire";
+
+
 export default function MenuHeader() {
-  const account = '';
+  const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Thêm biến isLoggedIn
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    setIsLoggedIn(!!user?.email); // Cập nhật giá trị của isLoggedIn khi user.email thay đổi
+  }, [user]);
 
   return (
 
@@ -27,7 +48,7 @@ export default function MenuHeader() {
 
             </li>
           </ul>
-          {account === '' ? ( // Kiểm tra giá trị của account
+          {user?.email === '' ? ( // Kiểm tra giá trị của account
             <Link className="signin-signup" to={'/sign-in'} >
               <button className="button-login" id='form-open'>Đăng Nhập</button>
             </Link>
@@ -36,7 +57,7 @@ export default function MenuHeader() {
               <div className="image_account">
                 <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
               </div>
-              <div className="name_account">{account}</div>
+              <div className="name_account">{user?.email}</div>
             </div>
 
           )}

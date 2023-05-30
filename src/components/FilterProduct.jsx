@@ -1,14 +1,72 @@
 import React, { useState } from 'react';
-import { getDataProduct } from '../api/dataDrawFilter'
+import { getDataProduct } from '../api/dataDrawFilter';
+import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
+import {
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+} from "firebase/auth";
+import { auth } from "../firebase/fire";
 
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 const FilterProduct = () => {
     const [filter, setFilter] = useState('All');
     const [brandFilter, setBrandFilter] = useState('All');
 
-    const filteredProducts = getDataProduct().products.filter(product => {
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    const [loginError, setLoginError] = useState("");
+    const [user, setUser] = useState({});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [redirectTo, setRedirectTo] = useState(null);
+    const [displayedProducts, setDisplayedProducts] = useState(getDataProduct().products);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+        setIsLoggedIn(!!user?.email);
+
+        if (isLoggedIn && redirectTo) {
+            setTimeout(() => {
+                window.location.href = redirectTo; // Thực hiện chuyển hướng
+            }, 3000);
+        }
+    }, [user, isLoggedIn, redirectTo]);
+
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(
+                auth,
+                loginEmail,
+                loginPassword
+            );
+            console.log(user);
+            setRedirectTo("/Project_HH"); // Chuyển hướng về trang chủ
+        } catch (error) {
+            console.log(error.message);
+            setLoginError("Đăng nhập không thành công - Hãy kiểm tra Email hoặc Password!");
+        }
+    };
+
+    const logout = async () => {
+        await signOut(auth);
+    };
+
+    const deleteProduct = (productId) => {
+        const updatedProducts = displayedProducts.filter(product => product.id !== productId);
+        setDisplayedProducts(updatedProducts);
+    };
+
+    const filteredProducts = displayedProducts.filter(product => {
         if (filter === 'All') {
             return true;
         }
@@ -31,7 +89,6 @@ const FilterProduct = () => {
 
     return (
         <div>
-
             <button onClick={() => handleCategoryFilter('All')}>Tất Cả Sản Phẩm</button>
             <button onClick={() => handleCategoryFilter('smartphones')}>Điện Thoại</button>
             <button onClick={() => handleCategoryFilter('laptops')}>Laptop</button>
@@ -61,6 +118,9 @@ const FilterProduct = () => {
                         <img src={product.thumbnail} alt={product.id} />
                         <h3>{product.title}</h3>
                         <p>Price: {product.price}</p>
+                        {user?.email === "admin@hoangha.com" && (
+                            <button onClick={() => deleteProduct(product.id)}>Xoá</button>
+                        )}
                     </div>
                 ))}
             </div>

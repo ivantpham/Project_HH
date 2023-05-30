@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
@@ -10,15 +9,12 @@ import { auth } from "../firebase/fire";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
-  const [registerError, setRegisterError] = useState("");
-
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
+  const [loginError, setLoginError] = useState("");
   const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -28,26 +24,15 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const register = async () => {
-    try {
-      if (registerPassword === registerPasswordConfirm) {
-        const user = await createUserWithEmailAndPassword(
-          auth,
-          registerEmail,
-          registerPassword
-        );
-        console.log(user);
-      } else {
-        setRegisterError("Mật Khẩu Không Trùng Khớp!");
+  useEffect(() => {
+    setIsLoggedIn(!!user?.email);
 
-        // Xoá giá trị trong input
-        setRegisterPassword("");
-        setRegisterPasswordConfirm("");
-      }
-    } catch (error) {
-      console.log(error.message);
+    if (isLoggedIn && redirectTo) {
+      setTimeout(() => {
+        window.location.href = redirectTo; // Thực hiện chuyển hướng
+      }, 3000);
     }
-  };
+  }, [user, isLoggedIn, redirectTo]);
 
   const login = async () => {
     try {
@@ -57,8 +42,10 @@ function App() {
         loginPassword
       );
       console.log(user);
+      setRedirectTo("/Project_HH"); // Chuyển hướng về trang chủ
     } catch (error) {
       console.log(error.message);
+      setLoginError("Đăng nhập không thành công - Hãy kiểm tra Email hoặc Password!");
     }
   };
 
@@ -68,68 +55,38 @@ function App() {
 
   return (
     <div className="App d-flex align-items-center justify-content-center vh-100">
-      <div className="App-sign-up">
-        <h3> Tạo Tài Khoản </h3>
-        {registerError && <div>Mật Khẩu Không Trùng Khớp!</div>}
+      {!isLoggedIn && (
+        <div className="App-login">
+          <h3>Đăng nhập</h3>
+          {loginError && <div>{loginError}</div>}
 
-        <input
-          placeholder="Email..."
-          value={registerEmail}
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          value={registerPassword}
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-          }}
-        />
-        <input
-          className="pwcf"
-          placeholder="Password Confirm..."
-          value={registerPasswordConfirm}
-          onChange={(event) => {
-            setRegisterPasswordConfirm(event.target.value);
-          }}
-        />
+          <input
+            placeholder="Email..."
+            value={loginEmail}
+            onChange={(event) => {
+              setLoginEmail(event.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password..."
+            value={loginPassword}
+            onChange={(event) => {
+              setLoginPassword(event.target.value);
+            }}
+          />
 
-        <button onClick={register}> Create User</button>
-      </div>
+          <button onClick={login}>Đăng nhập</button>
+        </div>
+      )}
 
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-
-      {/* LOGIN */}
-
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-      {/* ------------------------------------------------------------------------------------------------------------------------------ */}
-
-      <div>
-        <h3> Login </h3>
-        <input
-          placeholder="Email..."
-          value={loginEmail}
-          onChange={(event) => {
-            setLoginEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          value={loginPassword}
-          onChange={(event) => {
-            setLoginPassword(event.target.value);
-          }}
-        />
-
-        <button onClick={login}> Login</button>
-      </div>
-
-      <h4> User Logged In: </h4>
-      {user?.email}
-
-      <button onClick={logout}> Sign Out </button>
+      {isLoggedIn && (
+        <>
+          <h4>Đăng nhập thành công:</h4>
+          {user?.email}
+          <button onClick={logout}>Đăng xuất</button>
+        </>
+      )}
     </div>
   );
 }

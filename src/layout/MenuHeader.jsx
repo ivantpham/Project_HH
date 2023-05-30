@@ -1,7 +1,6 @@
 import "../assets/less/header.less";
 import { signOut } from "firebase/auth";
-import { routes } from "@Router/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { iconClose, iconHamburger } from "@Assets/icons";
 import { Link } from 'react-router-dom';
@@ -13,10 +12,14 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/fire";
 
-
 export default function MenuHeader() {
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Thêm biến isLoggedIn
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [rememberUser, setRememberUser] = useState('');
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -27,16 +30,45 @@ export default function MenuHeader() {
   }, []);
 
   useEffect(() => {
-    setIsLoggedIn(!!user?.email); // Cập nhật giá trị của isLoggedIn khi user.email thay đổi
+    setIsLoggedIn(!!user?.email);
   }, [user]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setUser({});
+        setRememberUser('');
+        setIsLoggedOut(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const isHoangHaEmail = user?.email?.includes('@hoangha.com');
+  console.log("isHoangHaEmail", isHoangHaEmail);
+
   return (
-
     <>
-
-      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+      {/* CSS link */}
       <header className="headers">
-        {/* Header */}
         <nav className="nav">
           <Link className="logo" to={''} >
             <img src="https://hoanghamobile.com/Content/web/img/logo-text.png" alt="" className="logo" />
@@ -45,26 +77,27 @@ export default function MenuHeader() {
             <li className="nav_item">
               <a href="#" className="nav_link">Bảo Hành</a>
               <a href="#" className="nav_link">Tra Cứu Đơn Hàng</a>
-
             </li>
           </ul>
-          {user?.email === '' ? ( // Kiểm tra giá trị của account
-            <Link className="signin-signup" to={'/sign-in'} >
-              <button className="button-login" id='form-open'>Đăng Nhập</button>
-            </Link>
-          ) : (
+          {isLoggedIn && !isLoggedOut ? (
             <div className="success_sign">
               <div className="image_account">
                 <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
               </div>
-              <div className="name_account">{user?.email}</div>
+              <div className="name_account" onClick={handleDropdownToggle}>{user?.email}</div>
+              {isDropdownOpen && (
+                <div ref={dropdownRef} className="dropdown">
+                  <button onClick={handleLogout}>Sign Out</button>
+                </div>
+              )}
             </div>
-
+          ) : (
+            <Link className="signin-signup" to={'/sign-in'} >
+              <button className="button-login" id='form-open'>Đăng Nhập</button>
+            </Link>
           )}
-
         </nav>
       </header>
-
     </>
-  )
+  );
 }

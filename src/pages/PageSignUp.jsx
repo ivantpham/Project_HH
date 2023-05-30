@@ -46,7 +46,6 @@ function App() {
         setRegisterError("Mật Khẩu Không Trùng Khớp!");
 
         // Xoá giá trị trong input
-        setRegisterPassword("");
         setRegisterPasswordConfirm("");
       }
     } catch (error) {

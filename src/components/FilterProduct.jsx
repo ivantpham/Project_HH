@@ -212,6 +212,13 @@ const FilterProduct = () => {
                         </div>
                     </div>
 
+                    {user?.email === "admin@hoangha.com" && (
+                        <>
+                            <button type="button" class="btn btn-primary btn-add-product">Thêm Sản Phẩm</button>
+
+                        </>
+
+                    )}
 
                     <div className='row row-cols-2 row-cols-md-6 g-6'>
                         {filteredProducts.map(product => (
@@ -264,7 +271,7 @@ const FilterProduct = () => {
                                             className="form-control"
                                             id="editTitle"
                                             value={editTitle}
-                                            onChange={e => setEditTitle(e.target.value)}
+                                            onChange={(e) => setEditTitle(e.target.value)}
                                         />
                                     </div>
                                     <div className="form-group">
@@ -274,7 +281,7 @@ const FilterProduct = () => {
                                             className="form-control"
                                             id="editPrice"
                                             value={editPrice}
-                                            onChange={e => setEditPrice(e.target.value)}
+                                            onChange={(e) => setEditPrice(e.target.value)}
                                         />
                                     </div>
                                     <div className="form-group">
@@ -284,14 +291,22 @@ const FilterProduct = () => {
                                             className="form-control"
                                             id="editThumbnail"
                                             value={editThumbnail}
-                                            onChange={e => setEditThumbnail(e.target.value)}
+                                            onChange={(e) => setEditThumbnail(e.target.value)}
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <button type="button" className="btn btn-primary save" onClick={saveProductChanges}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary save"
+                                            onClick={saveProductChanges}
+                                        >
                                             Lưu
                                         </button>
-                                        <button type="button" className="btn btn-light cancel" onClick={closeEditPopup}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-light cancel"
+                                            onClick={closeEditPopup}
+                                        >
                                             Hủy
                                         </button>
                                     </div>

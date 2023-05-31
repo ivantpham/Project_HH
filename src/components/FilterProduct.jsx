@@ -86,13 +86,14 @@ const FilterProduct = () => {
     };
 
     const saveProductChanges = () => {
-        const updatedProducts = displayedProducts.map(product => {
+        const updatedProducts = displayedProducts.map((product) => {
             if (product.id === editingProduct.id) {
+                const formattedPrice = Number(editPrice).toLocaleString("vi-VN");
                 return {
                     ...product,
                     title: editTitle,
-                    price: editPrice,
-                    thumbnail: editThumbnail
+                    price: formattedPrice,
+                    thumbnail: editThumbnail,
                 };
             }
             return product;

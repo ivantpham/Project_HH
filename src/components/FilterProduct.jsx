@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
-import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 import {
@@ -11,6 +10,7 @@ import {
 import { auth } from "../firebase/fire";
 
 import 'bootstrap/dist/css/bootstrap.css';
+import '../assets/less/FilterProduct.css';
 
 const FilterProduct = () => {
     const [filter, setFilter] = useState('All');
@@ -88,41 +88,125 @@ const FilterProduct = () => {
     };
 
     return (
-        <div>
-            <button onClick={() => handleCategoryFilter('All')}>Tất Cả Sản Phẩm</button>
-            <button onClick={() => handleCategoryFilter('smartphones')}>Điện Thoại</button>
-            <button onClick={() => handleCategoryFilter('laptops')}>Laptop</button>
-            <button onClick={() => handleCategoryFilter('tablets')}>Tablet</button>
-            <button onClick={() => handleCategoryFilter('watches')}>Đồng Hồ</button>
-            <button onClick={() => handleCategoryFilter('powerbanks')}>Sạc Dự Phòng</button>
-            <button onClick={() => handleCategoryFilter('mouses')}>Chuột</button>
-            <button onClick={() => handleCategoryFilter('docks')}>Dock Sạc</button>
-            <br />
-            <button onClick={() => handleBrandFilter('All')}>All Brands</button>
-            {filteredProducts
-                .reduce((brands, product) => {
-                    if (!brands.includes(product.brand)) {
-                        brands.push(product.brand);
-                    }
-                    return brands;
-                }, [])
-                .map(brand => (
-                    <button key={brand} onClick={() => handleBrandFilter(brand)}>
-                        {brand}
-                    </button>
-                ))}
-            <br />
-            <div className='grid grid-cols-6 gap-6'>
-                {filteredProducts.map(product => (
-                    <div key={product.id}>
-                        <img src={product.thumbnail} alt={product.id} />
-                        <h3>{product.title}</h3>
-                        <p>Price: {product.price}</p>
-                        {user?.email === "admin@hoangha.com" && (
-                            <button onClick={() => deleteProduct(product.id)}>Xoá</button>
-                        )}
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <div className="category-brand row">
+                        <div className="btn-group">
+                            <button
+                                className={`btn btn-primary btn-first ${filter === 'All' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('All')}
+                            >
+                                Tất Cả Sản Phẩm
+                            </button>
+                            <button
+                                className={`btn btn-primary ${filter === 'smartphones' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('smartphones')}
+                            >
+                                Điện Thoại
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'tablets' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('tablets')}
+                            >
+                                Tablet
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'laptops' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('laptops')}
+                            >
+                                Laptop
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'watches' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('watches')}
+                            >
+                                Đồng Hồ
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'powerbanks' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('powerbanks')}
+                            >
+                                Sạc Dự Phòng
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'mouses' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('mouses')}
+                            >
+                                Chuột
+                            </button>
+
+                            <button
+                                className={`btn btn-primary ${filter === 'docks' ? 'active' : ''}`}
+                                onClick={() => handleCategoryFilter('docks')}
+                            >
+                                Dock Sạc
+                            </button>
+                            {/* Rest of the category buttons */}
+                        </div>
+
+                        <div className="btn-group d-flex flex-wrap">
+                            <button
+                                className={`btn btn-secondary ${brandFilter === 'All' ? 'active' : ''}`}
+                                onClick={() => handleBrandFilter('All')}
+                            >
+                                All Brands
+                            </button>
+                            {filteredProducts
+                                .reduce((brands, product) => {
+                                    if (!brands.includes(product.brand)) {
+                                        brands.push(product.brand);
+                                    }
+                                    return brands;
+                                }, [])
+                                .map(brand => (
+                                    <button
+                                        key={brand}
+                                        className={`btn btn-secondary ${brandFilter === brand ? 'active' : ''}`}
+                                        onClick={() => handleBrandFilter(brand)}
+                                    >
+                                        {brand}
+                                    </button>
+                                ))}
+                        </div>
                     </div>
-                ))}
+
+
+                    <div className='row row-cols-2 row-cols-md-6 g-6'>
+                        {filteredProducts.map(product => (
+                            <div key={product.id} className="col">
+                                <div className="card d-flex flex-column">
+                                    <div className="image-product">
+                                        <img src={product.thumbnail} alt={product.id} className="card-img-top mx-auto" />
+
+                                    </div>
+                                    <div className="card-body d-flex flex-column align-items-center">
+                                        <div className="row">
+                                            <div className="col card-text mb-auto p-2">{product.price.toLocaleString()} VND</div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col card-title p-2">{product.title}</div>
+                                        </div>
+                                        {user?.email === "admin@hoangha.com" && (
+                                            <button
+                                                onClick={() => deleteProduct(product.id)}
+                                                className="btn btn-danger p-2"
+                                            >
+                                                Xoá
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

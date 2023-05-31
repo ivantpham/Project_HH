@@ -24,6 +24,11 @@ const FilterProduct = () => {
     const [redirectTo, setRedirectTo] = useState(null);
     const [displayedProducts, setDisplayedProducts] = useState(getDataProduct().products);
 
+    const [editingProduct, setEditingProduct] = useState(null);
+    const [editTitle, setEditTitle] = useState("");
+    const [editPrice, setEditPrice] = useState("");
+    const [editThumbnail, setEditThumbnail] = useState("");
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -64,6 +69,36 @@ const FilterProduct = () => {
     const deleteProduct = (productId) => {
         const updatedProducts = displayedProducts.filter(product => product.id !== productId);
         setDisplayedProducts(updatedProducts);
+    };
+
+    const openEditPopup = (product) => {
+        setEditingProduct(product);
+        setEditTitle(product.title);
+        setEditPrice(product.price);
+        setEditThumbnail(product.thumbnail);
+    };
+
+    const closeEditPopup = () => {
+        setEditingProduct(null);
+        setEditTitle("");
+        setEditPrice("");
+        setEditThumbnail("");
+    };
+
+    const saveProductChanges = () => {
+        const updatedProducts = displayedProducts.map(product => {
+            if (product.id === editingProduct.id) {
+                return {
+                    ...product,
+                    title: editTitle,
+                    price: editPrice,
+                    thumbnail: editThumbnail
+                };
+            }
+            return product;
+        });
+        setDisplayedProducts(updatedProducts);
+        closeEditPopup();
     };
 
     const filteredProducts = displayedProducts.filter(product => {
@@ -193,12 +228,21 @@ const FilterProduct = () => {
                                             <div className="col card-title p-2">{product.title}</div>
                                         </div>
                                         {user?.email === "admin@hoangha.com" && (
-                                            <button
-                                                onClick={() => deleteProduct(product.id)}
-                                                className="btn btn-danger p-2"
-                                            >
-                                                Xoá
-                                            </button>
+                                            <>
+                                                <button
+                                                    onClick={() => openEditPopup(product)}
+                                                    className="btn btn-primary p-2"
+                                                >
+                                                    Chỉnh sửa
+                                                </button>
+                                                <button
+                                                    onClick={() => deleteProduct(product.id)}
+                                                    className="btn btn-danger p-2"
+                                                >
+                                                    Xoá
+                                                </button>
+                                            </>
+
                                         )}
                                     </div>
                                 </div>
@@ -206,6 +250,54 @@ const FilterProduct = () => {
                             </div>
                         ))}
                     </div>
+
+                    {editingProduct && (
+                        <div className="popup">
+                            <div className="popup-inner">
+                                <h3>Chỉnh sửa sản phẩm</h3>
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="editTitle">Tiêu đề:</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="editTitle"
+                                            value={editTitle}
+                                            onChange={e => setEditTitle(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="editPrice">Giá:</label>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="editPrice"
+                                            value={editPrice}
+                                            onChange={e => setEditPrice(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="editThumbnail">Ảnh đại diện:</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="editThumbnail"
+                                            value={editThumbnail}
+                                            onChange={e => setEditThumbnail(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <button type="button" className="btn btn-primary" onClick={saveProductChanges}>
+                                            Lưu
+                                        </button>
+                                        <button type="button" className="btn btn-secondary" onClick={closeEditPopup}>
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

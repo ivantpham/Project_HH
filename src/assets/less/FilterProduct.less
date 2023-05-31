@@ -104,13 +104,6 @@
 
 
 
-
-// POPUP
-
-.container {
-    /* Add container styles */
-}
-
 .category-brand {
     /* Add category-brand styles */
 }
@@ -126,7 +119,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .popup-inner {
+        background-color: lightgray;
+        width: 500px;
+        height: 450px;
+        padding: 30px;
+        border-radius: 10px;
+
+        h2 {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        form {
+            .form-group {
+                label {
+                    font-weight: 600;
+                }
+
+                .save {
+                    margin: 15px 0;
+                }
+
+                .cancel {
+                    margin: 15px 0;
+                    width: 100%;
+
+                }
+            }
+        }
+    }
 }
 
 .popup-content {

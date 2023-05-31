@@ -254,7 +254,7 @@ const FilterProduct = () => {
                     {editingProduct && (
                         <div className="popup">
                             <div className="popup-inner">
-                                <h3>Chỉnh sửa sản phẩm</h3>
+                                <h2>Chỉnh Sửa Sản Phẩm</h2>
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="editTitle">Tiêu đề:</label>
@@ -277,7 +277,7 @@ const FilterProduct = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="editThumbnail">Ảnh đại diện:</label>
+                                        <label htmlFor="editThumbnail">Ảnh sản phẩm:</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -287,10 +287,10 @@ const FilterProduct = () => {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <button type="button" className="btn btn-primary" onClick={saveProductChanges}>
+                                        <button type="button" className="btn btn-primary save" onClick={saveProductChanges}>
                                             Lưu
                                         </button>
-                                        <button type="button" className="btn btn-secondary" onClick={closeEditPopup}>
+                                        <button type="button" className="btn btn-light cancel" onClick={closeEditPopup}>
                                             Hủy
                                         </button>
                                     </div>

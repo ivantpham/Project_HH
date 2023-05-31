@@ -1,11 +1,135 @@
 /* FilterProduct.css */
 
 .container {
-    margin-top: 80px;
+    margin-top: 70px;
     max-width: 100%;
+
+
+
+    .card {
+        height: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+
+        .image-product {
+            width: 100%;
+
+            .card-img-top {
+                width: 100%;
+                height: 100%;
+            }
+
+        }
+
+
+
+
+        .card-body {
+            .card-title {
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                margin-top: -0;
+                height: 80px;
+                text-align: center;
+
+            }
+
+            .card-text {
+                font-size: 16px;
+                height: 30px;
+                color: red;
+                font-weight: 600;
+            }
+
+            .btn-primary {
+                width: 100%;
+            }
+
+            .btn-danger {
+                width: 100%;
+            }
+        }
+    }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10001;
+
+        .popup-inner {
+            background-color: lightgray;
+            width: 500px;
+            height: 450px;
+            padding: 30px;
+            border-radius: 10px;
+
+
+
+            h2 {
+                text-align: center;
+                font-weight: 600;
+                margin-top: 0;
+
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .form-group {
+                    label {
+                        font-weight: 600;
+                    }
+
+                    .save {
+                        margin: 15px 0;
+                    }
+
+                    .cancel {
+                        margin: 15px 0;
+                        width: 100%;
+
+                    }
+
+                    input[type="text"],
+                    .popup textarea {
+                        padding: 5px;
+                        /* Add input and textarea styles */
+                    }
+
+                    .btn-primary {
+                        width: 100%;
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 .col {
+    .btn-add-product {
+        width: 100%;
+        margin-bottom: 20px;
+
+
+    }
+
     .btn-group {
         margin-bottom: 10px;
         width: 100%;
@@ -13,6 +137,7 @@
 
         .btn-primary {
             background-color: #019a82;
+
         }
 
         .btn:first-child:not(:last-child) {
@@ -28,66 +153,6 @@
     }
 }
 
-.card {
-    height: 100%;
-    margin: 0 auto;
-
-    .image-product {
-        width: 100%;
-
-        .card-img-top {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-
-
-
-    .card-body {
-        .card-title {
-            font-size: 15px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            margin-top: -0;
-            height: 80px;
-            text-align: center;
-
-        }
-
-        .card-text {
-            font-size: 16px;
-            height: 30px;
-            color: red;
-            font-weight: 600;
-        }
-    }
-}
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-
-.btn-primary {
-    width: 100%;
-}
-
-
-.btn-danger {
-    width: 100%;
-}
-
-.row-cols-2 .card {
-    margin-bottom: 20px;
-}
-
-@media (min-width: 768px) {
-    .row-cols-md-3 .card {
-        margin-bottom: 20px;
-    }
-}
 
 
 
@@ -97,87 +162,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-/* Add other CSS styles */
-
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-
-    .popup-inner {
-        background-color: lightgray;
-        width: 500px;
-        height: 450px;
-        padding: 30px;
-        border-radius: 10px;
-
-        h2 {
-            text-align: center;
-            font-weight: 600;
-        }
-
-        form {
-            .form-group {
-                label {
-                    font-weight: 600;
-                }
-
-                .save {
-                    margin: 15px 0;
-                }
-
-                .cancel {
-                    margin: 15px 0;
-                    width: 100%;
-
-                }
-            }
-        }
-    }
-}
-
-.popup-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.popup h2 {
-    margin-top: 0;
-}
-
-.popup form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.popup label {
-    display: flex;
-    flex-direction: column;
-}
-
-.popup input[type="text"],
-.popup textarea {
-    padding: 5px;
-    /* Add input and textarea styles */
-}
 
 /* Add other CSS styles for the popup */
 

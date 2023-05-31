@@ -9,6 +9,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/fire";
 
+import TotalProduct from './TotalProduct';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/less/FilterProduct.css';
 
@@ -125,10 +127,16 @@ const FilterProduct = () => {
 
     return (
         <div className="container">
+
             <div className="row">
                 <div className="col">
                     <div className="category-brand row">
                         <div className="btn-group">
+
+                            <div className="total-product-container">
+                                <TotalProduct displayedProducts={filteredProducts} className="total-product" />
+                            </div>
+
                             <button
                                 className={`btn btn-primary btn-first ${filter === 'All' ? 'active' : ''}`}
                                 onClick={() => handleCategoryFilter('All')}

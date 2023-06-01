@@ -33,6 +33,32 @@ const FilterProduct = () => {
     const [editPrice, setEditPrice] = useState("");
     const [editThumbnail, setEditThumbnail] = useState("");
 
+
+    const [localStorageProducts, setLocalStorageProducts] = useState([]);
+
+    const getTasksFromLocalStorageTask = () => {
+        const tasksToDisplay = [];
+        let n = 1;
+        let taskKey = 'task' + n;
+        while (localStorage.getItem(taskKey)) {
+            const taskData = JSON.parse(localStorage.getItem(taskKey));
+            tasksToDisplay.push(taskData);
+            n++;
+            taskKey = 'task' + n;
+        }
+        return tasksToDisplay;
+    };
+
+    useEffect(() => {
+        const tasksToDisplay = getTasksFromLocalStorageTask();
+        if (tasksToDisplay.length > 0) {
+            setLocalStorageProducts(tasksToDisplay);
+        }
+    }, []);
+
+
+
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -106,7 +132,7 @@ const FilterProduct = () => {
         closeEditPopup();
     };
 
-    const filteredProducts = displayedProducts.filter(product => {
+    const filteredProducts = displayedProducts.concat(localStorageProducts).filter(product => {
         if (filter === 'All') {
             return true;
         }
@@ -117,6 +143,13 @@ const FilterProduct = () => {
         }
         return product.brand === brandFilter;
     });
+
+
+    const productsToRender = filteredProducts.map(product => (
+        <div key={product.id} className="col">
+            {/* Hiển thị thông tin sản phẩm */}
+        </div>
+    ));
 
     const handleCategoryFilter = category => {
         setFilter(category);
@@ -132,6 +165,9 @@ const FilterProduct = () => {
     const [tasks, setTasks] = useState([]);
     const [idValue, setIdValue] = useState('');
     const [titleValue, setTitleValue] = useState('');
+    const [brandValue, setBrandValue] = useState('');
+    const [categoryValue, setCategoryValue] = useState('');
+
     const [priceValue, setPriceValue] = useState('');
     const [thumbnailValue, setThumbnailValue] = useState('');
     const [showPopupAdd, setShowPopupAdd] = useState(false);
@@ -170,6 +206,14 @@ const FilterProduct = () => {
 
     const handleTitleChange = (e) => {
         setTitleValue(e.target.value);
+    };
+
+    const handleBrandChange = (e) => {
+        setBrandValue(e.target.value);
+    };
+
+    const handleCategoryChange = (e) => {
+        setCategoryValue(e.target.value);
     };
 
     const handlePriceChange = (e) => {
@@ -360,6 +404,19 @@ const FilterProduct = () => {
                                 />
                                 <input
                                     type="text"
+                                    placeholder="Enter a brand"
+                                    value={brandValue}
+                                    onChange={handleBrandChange}
+                                />
+
+                                <input
+                                    type="text"
+                                    placeholder="Enter a category"
+                                    value={categoryValue}
+                                    onChange={handleCategoryChange}
+                                />
+                                <input
+                                    type="text"
                                     placeholder="Enter a thumbnail"
                                     value={thumbnailValue}
                                     onChange={handleThumbnailChange}
@@ -376,7 +433,7 @@ const FilterProduct = () => {
                                             onChange={() => handleCompleteTask(task.id)}
                                         />
                                         <span className="task-text" onClick={() => handleCompleteTask(task.id)}>
-                                            ID: {task.id} - Title: {task.title} - Price: {task.price} - Thumbnail: {task.thumbnail}
+                                            ID: {task.id} - Title: {task.title} - Price: {task.price} - Thumbnail: {task.thumbnail} - Brand: {task.brand} - category: {task.category}
                                         </span>
                                         <FaTrash className="delete-icon" onClick={() => handleDeleteTask(task.id)} />
                                     </li>
@@ -386,6 +443,7 @@ const FilterProduct = () => {
                     )}
 
                     <div className='row row-cols-2 row-cols-md-6 g-6'>
+                        {productsToRender}
                         {filteredProducts.map(product => (
                             <div key={product.id} className="col">
                                 <div className="card d-flex flex-column">

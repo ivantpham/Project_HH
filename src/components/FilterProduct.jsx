@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
 import { Link } from 'react-router-dom';
+import { FaCheckCircle, FaTrash } from 'react-icons/fa';
+
 
 import {
     signInWithEmailAndPassword,
@@ -125,6 +127,112 @@ const FilterProduct = () => {
         setBrandFilter(brand);
     };
 
+
+
+    const [tasks, setTasks] = useState([]);
+    const [idValue, setIdValue] = useState('');
+    const [titleValue, setTitleValue] = useState('');
+    const [priceValue, setPriceValue] = useState('');
+    const [thumbnailValue, setThumbnailValue] = useState('');
+    const [showPopupAdd, setShowPopupAdd] = useState(false);
+
+    const getTasksFromLocalStorage = () => {
+        const tasksToDisplay = [];
+        let n = 1;
+        let taskKey = 'task' + n;
+        while (localStorage.getItem(taskKey)) {
+            const taskData = JSON.parse(localStorage.getItem(taskKey));
+            tasksToDisplay.push(taskData);
+            n++;
+            taskKey = 'task' + n;
+        }
+        return tasksToDisplay;
+    };
+
+    useEffect(() => {
+        const tasksToDisplay = getTasksFromLocalStorage();
+        if (tasksToDisplay.length > 0) {
+            setTasks(tasksToDisplay);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.clear();
+        tasks.forEach((task, index) => {
+            const taskKey = 'task' + (index + 1);
+            localStorage.setItem(taskKey, JSON.stringify(task));
+        });
+    }, [tasks]);
+
+    const handleIdChange = (e) => {
+        setIdValue(e.target.value);
+    };
+
+    const handleTitleChange = (e) => {
+        setTitleValue(e.target.value);
+    };
+
+    const handlePriceChange = (e) => {
+        setPriceValue(e.target.value);
+    };
+
+    const handleThumbnailChange = (e) => {
+        setThumbnailValue(e.target.value);
+    };
+
+    const handleAddTask = () => {
+        if (idValue.trim() !== '' && titleValue.trim() !== '' && priceValue.trim() !== '' && thumbnailValue.trim() !== '') {
+            const newTask = {
+                id: idValue,
+                title: titleValue,
+                price: priceValue,
+                thumbnail: thumbnailValue,
+                completed: false,
+            };
+            let taskIndex = tasks.length + 1;
+            const taskKey = 'task' + taskIndex;
+            localStorage.setItem(taskKey, JSON.stringify(newTask));
+            setTasks([...tasks, newTask]);
+            setIdValue('');
+            setTitleValue('');
+            setPriceValue('');
+            setThumbnailValue('');
+        }
+    };
+
+    const handleCompleteTask = (taskId) => {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === taskId) {
+                return {
+                    ...task,
+                    completed: !task.completed,
+                };
+            }
+            return task;
+        });
+        setTasks(updatedTasks);
+    };
+
+    const handleDeleteTask = (taskId) => {
+        const updatedTasks = tasks.filter((task) => task.id !== taskId);
+        setTasks(updatedTasks);
+        localStorage.clear();
+        updatedTasks.forEach((task, index) => {
+            const taskKey = 'task' + (index + 1);
+            localStorage.setItem(taskKey, JSON.stringify(task));
+        });
+    };
+
+    const handleShowPopup = () => {
+        setShowPopupAdd(true);
+    };
+
+    const handleHidePopup = () => {
+        setShowPopupAdd(false);
+    };
+
+
+
     return (
         <div className="container">
 
@@ -222,10 +330,59 @@ const FilterProduct = () => {
 
                     {user?.email === "admin@hoangha.com" && (
                         <>
-                            <button type="button" class="btn btn-primary btn-add-product">Thêm Sản Phẩm</button>
+                            <button onClick={handleShowPopup} type="button" class="btn btn-primary btn-add-product">Thêm Sản Phẩm</button>
 
                         </>
 
+                    )}
+
+
+                    {showPopupAdd && (
+                        <div className="popup">
+                            <div className="input-container">
+                                <input
+                                    type="text"
+                                    placeholder="Enter an ID"
+                                    value={idValue}
+                                    onChange={handleIdChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Enter a title"
+                                    value={titleValue}
+                                    onChange={handleTitleChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Enter a price"
+                                    value={priceValue}
+                                    onChange={handlePriceChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Enter a thumbnail"
+                                    value={thumbnailValue}
+                                    onChange={handleThumbnailChange}
+                                />
+                                <button onClick={handleAddTask}>Add</button>
+                                <button onClick={handleHidePopup}>Cancel</button>
+                            </div>
+                            <ul className="task-list">
+                                {tasks.map((task) => (
+                                    <li key={task.id} className={task.completed ? 'completed' : ''}>
+                                        <input
+                                            type="checkbox"
+                                            checked={task.completed}
+                                            onChange={() => handleCompleteTask(task.id)}
+                                        />
+                                        <span className="task-text" onClick={() => handleCompleteTask(task.id)}>
+                                            ID: {task.id} - Title: {task.title} - Price: {task.price} - Thumbnail: {task.thumbnail}
+                                        </span>
+                                        <FaTrash className="delete-icon" onClick={() => handleDeleteTask(task.id)} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     )}
 
                     <div className='row row-cols-2 row-cols-md-6 g-6'>
@@ -253,6 +410,45 @@ const FilterProduct = () => {
                                                 </button>
                                                 <button
                                                     onClick={() => deleteProduct(product.id)}
+                                                    className="btn btn-danger p-2"
+                                                >
+                                                    Xoá
+                                                </button>
+                                            </>
+
+                                        )}
+                                    </div>
+                                </div>
+
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className='row row-cols-2 row-cols-md-6 g-6'>
+                        {tasks.map((task) => (
+                            <div key={task.id} className={task.completed ? 'completed' : ''}>
+                                <div className="card d-flex flex-column">
+                                    <div className="image-product">
+                                        <img src={task.thumbnail} alt={task.title} className="card-img-top mx-auto" />
+
+                                    </div>
+                                    <div className="card-body d-flex flex-column align-items-center">
+                                        <div className="row">
+                                            <div className="col card-text mb-auto p-2">{task.price.toLocaleString()} VND</div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col card-title p-2">{task.title}</div>
+                                        </div>
+                                        {user?.email === "admin@hoangha.com" && (
+                                            <>
+                                                <button
+                                                    onClick={() => openEditPopup(task)}
+                                                    className="btn btn-primary p-2"
+                                                >
+                                                    Chỉnh sửa
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteTask(task.id)}
                                                     className="btn btn-danger p-2"
                                                 >
                                                     Xoá

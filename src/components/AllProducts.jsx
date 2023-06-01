@@ -98,17 +98,13 @@ const AllProducts = () => {
 
     const filterButtons = (
         <div className="filters">
-            {/* Xóa dòng này */}
-            {/* <button onClick={() => handleFilterBrandCategory('all', 'all')} className="btn btn-secondary">
-        Tất cả sản phẩm
-      </button> */}
             {allCategories.map((category) => (
                 <button
                     key={category}
                     onClick={() => handleFilterBrandCategory('all', category)}
                     className="btn btn-secondary"
                 >
-                    {category}
+                    {category === 'tablets' ? 'Tablet' : category === 'smartphones' ? 'Điện Thoại' : category === 'all' ? 'Tất Cả Sản Phẩm' : category}
                 </button>
             ))}
         </div>
@@ -121,17 +117,13 @@ const AllProducts = () => {
 
     const brandButtons = (
         <div className="filters">
-            {/* Xóa dòng này */}
-            {/* <button onClick={() => handleFilterBrandCategory('all', 'all')} className="btn btn-secondary">
-        All Brand
-      </button> */}
             {filteredBrandProducts.map((brand) => (
                 <button
                     key={brand}
                     onClick={() => handleFilterBrandCategory(brand, 'all')}
                     className="btn btn-secondary"
                 >
-                    {brand}
+                    {brand === 'smartphones' ? 'Điện Thoại' : brand}
                 </button>
             ))}
         </div>

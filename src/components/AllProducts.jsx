@@ -14,6 +14,7 @@ const AllProducts = () => {
         category: '',
         thumbnail: '',
     });
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         const storedTask = localStorage.getItem('task');
@@ -56,6 +57,7 @@ const AllProducts = () => {
             category: '',
             thumbnail: '',
         });
+        setShowPopup(false); // Đóng popup sau khi thêm sản phẩm thành công
     };
 
     const handleFilterCategory = (category) => {
@@ -104,7 +106,13 @@ const AllProducts = () => {
                     onClick={() => handleFilterBrandCategory('all', category)}
                     className="btn btn-secondary"
                 >
-                    {category === 'tablets' ? 'Tablet' : category === 'smartphones' ? 'Điện Thoại' : category === 'all' ? 'Tất Cả Sản Phẩm' : category}
+                    {category === 'tablets'
+                        ? 'Tablet'
+                        : category === 'smartphones'
+                            ? 'Điện Thoại'
+                            : category === 'all'
+                                ? 'Tất Cả Sản Phẩm'
+                                : category}
                 </button>
             ))}
         </div>
@@ -129,79 +137,100 @@ const AllProducts = () => {
         </div>
     );
 
+    const handleAddProduct = () => {
+        setShowPopup(true); // Mở popup khi bấm vào button "Thêm Sản Phẩm"
+    };
+
+    const handleCancel = () => {
+        setShowPopup(false); // Đóng popup khi bấm vào nút "Huỷ"
+    };
+
     return (
         <div className="container">
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label className="form-label">ID</label>
-                    <input
-                        type="text"
-                        name="id"
-                        value={formData.id}
-                        onChange={handleInputChange}
-                        placeholder="ID"
-                        className="form-control"
-                    />
+            {showPopup && ( // Hiển thị popup nếu showPopup là true
+                <div className="popup">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label className="form-label">ID</label>
+                            <input
+                                type="text"
+                                name="id"
+                                value={formData.id}
+                                onChange={handleInputChange}
+                                placeholder="ID"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleInputChange}
+                                placeholder="Title"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Price</label>
+                            <input
+                                type="text"
+                                name="price"
+                                value={formData.price}
+                                onChange={handleInputChange}
+                                placeholder="Price"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Brand</label>
+                            <input
+                                type="text"
+                                name="brand"
+                                value={formData.brand}
+                                onChange={handleInputChange}
+                                placeholder="Brand"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Category</label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={formData.category}
+                                onChange={handleInputChange}
+                                placeholder="Category"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Thumbnail</label>
+                            <input
+                                type="text"
+                                name="thumbnail"
+                                value={formData.thumbnail}
+                                onChange={handleInputChange}
+                                placeholder="Thumbnail"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="popup-buttons">
+                            <button type="submit" className="btn btn-primary">
+                                Submit
+                            </button>
+                            <button onClick={handleCancel} className="btn btn-secondary">
+                                Huỷ
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div className="mb-3">
-                    <label className="form-label">Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        placeholder="Title"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Price</label>
-                    <input
-                        type="text"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleInputChange}
-                        placeholder="Price"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Brand</label>
-                    <input
-                        type="text"
-                        name="brand"
-                        value={formData.brand}
-                        onChange={handleInputChange}
-                        placeholder="Brand"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Category</label>
-                    <input
-                        type="text"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleInputChange}
-                        placeholder="Category"
-                        className="form-control"
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Thumbnail</label>
-                    <input
-                        type="text"
-                        name="thumbnail"
-                        value={formData.thumbnail}
-                        onChange={handleInputChange}
-                        placeholder="Thumbnail"
-                        className="form-control"
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">
-                    Submit
-                </button>
-            </form>
+            )}
+
+            <button onClick={handleAddProduct} className="btn btn-primary">
+                Thêm Sản Phẩm
+            </button>
 
             {filterButtons}
             {brandButtons}

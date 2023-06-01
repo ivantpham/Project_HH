@@ -1,3 +1,35 @@
 .container {
     margin-top: 90px;
 }
+
+
+
+
+
+    {
+    products.map((product)=> (<div key= {
+                product.id
+            }
+
+            > <h3> {
+                product.title
+            }
+
+            </h3> <img src= {
+                product.thumbnail
+            }
+
+            alt= {
+                product.title
+            }
+
+            /> <p>Price: {
+                product.price
+            }
+
+            </p> {
+                /* Render other product details */
+            }
+
+            </div>))
+}

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
 import '../assets/less/AllProducts.css';
 
-
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [formData, setFormData] = useState({
         id: '',
         title: '',
@@ -17,15 +17,17 @@ const AllProducts = () => {
     useEffect(() => {
         const storedTask = localStorage.getItem('task');
         if (storedTask) {
-            // Render products from local storage
             setProducts(JSON.parse(storedTask));
         } else {
-            // Render products from getDataProduct
             const data = getDataProduct();
             setProducts(data.products);
             localStorage.setItem('task', JSON.stringify(data.products));
         }
     }, []);
+
+    useEffect(() => {
+        setFilteredProducts(products);
+    }, [products]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -34,7 +36,6 @@ const AllProducts = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         const newProduct = {
             id: formData.id,
             title: formData.title,
@@ -43,11 +44,9 @@ const AllProducts = () => {
             category: formData.category,
             thumbnail: formData.thumbnail,
         };
-
         const updatedProducts = [...products, newProduct];
         setProducts(updatedProducts);
         localStorage.setItem('task', JSON.stringify(updatedProducts));
-
         setFormData({
             id: '',
             title: '',
@@ -57,6 +56,27 @@ const AllProducts = () => {
             thumbnail: '',
         });
     };
+
+    const handleFilterCategory = (category) => {
+        if (category === 'all') {
+            setFilteredProducts(products);
+        } else {
+            const filtered = products.filter((product) => product.category === category);
+            setFilteredProducts(filtered);
+        }
+    };
+
+    const handleFilterBrand = (brand) => {
+        if (brand === 'all') {
+            setFilteredProducts(products);
+        } else {
+            const filtered = products.filter((product) => product.brand === brand);
+            setFilteredProducts(filtered);
+        }
+    };
+
+    const allCategories = ['all', 'smartphones', 'tablets'];
+    const allBrands = [...new Set(products.map((product) => product.brand))];
 
     return (
         <div className="container">
@@ -106,14 +126,33 @@ const AllProducts = () => {
                 <button type="submit">Submit</button>
             </form>
 
-            {products.map((product) => (
-                <div key={product.id}>
-                    <h3>{product.title}</h3>
-                    <img src={product.thumbnail} alt={product.title} />
-                    <p>Price: {product.price}</p>
-                    {/* Render other product details */}
-                </div>
-            ))}
+            <div className="filters">
+                <button onClick={() => handleFilterCategory('all')}>Tất cả sản phẩm</button>
+                {allCategories.map((category) => (
+                    <button key={category} onClick={() => handleFilterCategory(category)}>
+                        {category}
+                    </button>
+                ))}
+            </div>
+
+            <div className="filters">
+                <button onClick={() => handleFilterBrand('all')}>All Brand</button>
+                {allBrands.map((brand) => (
+                    <button key={brand} onClick={() => handleFilterBrand(brand)}>
+                        {brand}
+                    </button>
+                ))}
+            </div>
+
+            <div className="product-list">
+                {filteredProducts.map((product) => (
+                    <div key={product.id}>
+                        <h3>{product.title}</h3>
+                        <img src={product.thumbnail} alt={product.title} />
+                        <p>Price: {product.price}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

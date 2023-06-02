@@ -8,31 +8,31 @@ const FilterProducts = ({ activeFilter, onFilterChange }) => {
     return (
         <div className="filter">
             <button
-                className={activeFilter === 'All' ? 'active' : ''}
+                className={`btn ${activeFilter === 'All' ? 'btn-primary active' : 'btn-secondary'}`}
                 onClick={() => handleClick('All')}
             >
                 All
             </button>
             <button
-                className={activeFilter === 'Điện Thoại' ? 'active' : ''}
+                className={`btn ${activeFilter === 'Điện Thoại' ? 'btn-primary active' : 'btn-secondary'}`}
                 onClick={() => handleClick('Điện Thoại')}
             >
                 Điện Thoại
             </button>
             <button
-                className={activeFilter === 'Laptop' ? 'active' : ''}
+                className={`btn ${activeFilter === 'Laptop' ? 'btn-primary active' : 'btn-secondary'}`}
                 onClick={() => handleClick('Laptop')}
             >
                 Laptop
             </button>
             <button
-                className={activeFilter === 'Tablet' ? 'active' : ''}
+                className={`btn ${activeFilter === 'Tablet' ? 'btn-primary active' : 'btn-secondary'}`}
                 onClick={() => handleClick('Tablet')}
             >
                 Tablet
             </button>
             <button
-                className={activeFilter === 'Đồng Hồ' ? 'active' : ''}
+                className={`btn ${activeFilter === 'Đồng Hồ' ? 'btn-primary active' : 'btn-secondary'}`}
                 onClick={() => handleClick('Đồng Hồ')}
             >
                 Đồng Hồ

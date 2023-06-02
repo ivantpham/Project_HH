@@ -74,11 +74,12 @@ const AllProducts = () => {
 
     return (
         <div className="container">
+            <FilterProducts activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+
             <button className="btn btn-primary add-product" onClick={openPopup}>
                 Thêm Sản Phẩm
             </button>
 
-            <FilterProducts activeFilter={activeFilter} onFilterChange={handleFilterChange} />
 
             <div className="row">
                 {filteredProducts.map((product) => (

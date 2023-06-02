@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/less/AllProducts.css';
+import DeleteProducts from "../components/DeleteProducts"
+
 
 
 const AllProducts = () => {
@@ -49,6 +51,12 @@ const AllProducts = () => {
         closePopup();
     };
 
+
+    const handleDelete = (id) => {
+        // Xoá sản phẩm với id tương ứng
+        setCreateProducts((prevState) => prevState.filter((product) => product.id !== id));
+    };
+
     return (
         <div className="container">
 
@@ -62,8 +70,8 @@ const AllProducts = () => {
                             <img src={product.thumbnail} className="card-img-top" alt={product.title} />
                             <div className="card-body">
                                 <h5 className="card-title">{product.title}</h5>
-                                <p className="card-text">{product.price.toLocaleString()}</p>
-
+                                <p className="card-text">{product.price.toLocaleString()} VNĐ</p>
+                                <DeleteProducts productId={product.id} onDelete={handleDelete} />
                             </div>
                         </div>
                     </div>

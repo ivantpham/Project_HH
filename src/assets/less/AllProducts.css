@@ -12,7 +12,11 @@
   width: 100%;
   margin: 15px 0;
 }
-.container .row .card .card-text {
+.container .row .card .card-body .card-title {
+  text-align: center;
+  margin: 0 auto;
+}
+.container .row .card .card-body .card-text {
   text-align: center;
 }
 .popup h2 {

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import FilterProduct from "../components/FilterProduct"
+import FilterProduct from "../components/FilterProducts"
 import AllProducts from "../components/AllProducts"
 
 

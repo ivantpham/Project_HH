@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/less/AllProducts.css';
-import DeleteProducts from "../components/DeleteProducts"
-
-
+import DeleteProducts from "../components/DeleteProducts";
+import FilterProducts from "../components/FilterProducts";
 
 const AllProducts = () => {
     const [createProducts, setCreateProducts] = useState(getDataProduct().products);
@@ -17,6 +16,7 @@ const AllProducts = () => {
         category: '',
         thumbnail: '',
     });
+    const [activeFilter, setActiveFilter] = useState('All');
 
     const openPopup = () => {
         setIsPopupOpen(true);
@@ -36,9 +36,7 @@ const AllProducts = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Thêm sản phẩm mới vào mảng createProducts
         setCreateProducts((prevState) => [...prevState, newProductData]);
-        // Đặt lại dữ liệu của form
         setNewProductData({
             id: '',
             title: '',
@@ -47,24 +45,43 @@ const AllProducts = () => {
             category: '',
             thumbnail: '',
         });
-        // Đóng popup
         closePopup();
     };
 
-
     const handleDelete = (id) => {
-        // Xoá sản phẩm với id tương ứng
         setCreateProducts((prevState) => prevState.filter((product) => product.id !== id));
     };
 
+    const handleFilterChange = (filter) => {
+        setActiveFilter(filter);
+    };
+
+    const filteredProducts = createProducts.filter((product) => {
+        if (activeFilter === 'All') {
+            return true;
+        } else if (activeFilter === 'Điện Thoại') {
+            return product.category.toLowerCase() === 'smartphones';
+        } else if (activeFilter === 'Laptop') {
+            return product.category.toLowerCase() === 'laptops';
+        } else if (activeFilter === 'Tablet') {
+            return product.category.toLowerCase() === 'tablets';
+        } else if (activeFilter === 'Đồng Hồ') {
+            return product.category.toLowerCase() === 'watches';
+        } else {
+            return false;
+        }
+    });
+
     return (
         <div className="container">
-
             <button className="btn btn-primary add-product" onClick={openPopup}>
                 Thêm Sản Phẩm
             </button>
+
+            <FilterProducts activeFilter={activeFilter} onFilterChange={handleFilterChange} />
+
             <div className="row">
-                {createProducts.map((product) => (
+                {filteredProducts.map((product) => (
                     <div key={product.id} className="col-md-2">
                         <div className="card mb-3">
                             <img src={product.thumbnail} className="card-img-top" alt={product.title} />
@@ -77,8 +94,6 @@ const AllProducts = () => {
                     </div>
                 ))}
             </div>
-
-
 
             {isPopupOpen && (
                 <div className="popup">
@@ -156,7 +171,6 @@ const AllProducts = () => {
                         </button>
                     </form>
                 </div>
-
             )}
         </div>
     );

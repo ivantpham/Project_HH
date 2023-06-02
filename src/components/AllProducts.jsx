@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { getDataProduct } from '../api/dataDrawFilter';
-import '../assets/less/AllProducts.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/less/AllProducts.css';
+
 
 const AllProducts = () => {
-    const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const [formData, setFormData] = useState({
+    const [createProducts, setCreateProducts] = useState(getDataProduct().products);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [newProductData, setNewProductData] = useState({
         id: '',
         title: '',
         price: '',
@@ -14,42 +15,29 @@ const AllProducts = () => {
         category: '',
         thumbnail: '',
     });
-    const [showPopup, setShowPopup] = useState(false);
 
-    useEffect(() => {
-        const storedTask = localStorage.getItem('task');
-        if (storedTask) {
-            setProducts(JSON.parse(storedTask));
-        } else {
-            const data = getDataProduct();
-            setProducts(data.products);
-            localStorage.setItem('task', JSON.stringify(data.products));
-        }
-    }, []);
-
-    useEffect(() => {
-        setFilteredProducts(products);
-    }, [products]);
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+    const openPopup = () => {
+        setIsPopupOpen(true);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const newProduct = {
-            id: formData.id,
-            title: formData.title,
-            price: formData.price,
-            brand: formData.brand,
-            category: formData.category,
-            thumbnail: formData.thumbnail,
-        };
-        const updatedProducts = [...products, newProduct];
-        setProducts(updatedProducts);
-        localStorage.setItem('task', JSON.stringify(updatedProducts));
-        setFormData({
+    const closePopup = () => {
+        setIsPopupOpen(false);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewProductData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Thêm sản phẩm mới vào mảng createProducts
+        setCreateProducts((prevState) => [...prevState, newProductData]);
+        // Đặt lại dữ liệu của form
+        setNewProductData({
             id: '',
             title: '',
             price: '',
@@ -57,193 +45,111 @@ const AllProducts = () => {
             category: '',
             thumbnail: '',
         });
-        setShowPopup(false); // Đóng popup sau khi thêm sản phẩm thành công
-    };
-
-    const handleFilterCategory = (category) => {
-        if (category === 'all') {
-            setFilteredProducts(products);
-        } else {
-            const filtered = products.filter((product) => product.category === category);
-            setFilteredProducts(filtered);
-        }
-    };
-
-    const handleFilterBrand = (brand) => {
-        if (brand === 'all') {
-            setFilteredProducts(products);
-        } else {
-            const filtered = products.filter((product) => product.brand === brand);
-            setFilteredProducts(filtered);
-        }
-    };
-
-    const allCategories = ['all', 'smartphones', 'tablets'];
-    const allBrands = [...new Set(products.map((product) => product.brand))];
-
-    const handleFilterBrandCategory = (brand, category) => {
-        if (brand === 'all' && category === 'all') {
-            setFilteredProducts(products);
-        } else if (brand === 'all') {
-            const filtered = products.filter((product) => product.category === category);
-            setFilteredProducts(filtered);
-        } else if (category === 'all') {
-            const filtered = products.filter((product) => product.brand === brand);
-            setFilteredProducts(filtered);
-        } else {
-            const filtered = products.filter(
-                (product) => product.brand === brand && product.category === category
-            );
-            setFilteredProducts(filtered);
-        }
-    };
-
-    const filterButtons = (
-        <div className="filters">
-            {allCategories.map((category) => (
-                <button
-                    key={category}
-                    onClick={() => handleFilterBrandCategory('all', category)}
-                    className="btn btn-secondary"
-                >
-                    {category === 'tablets'
-                        ? 'Tablet'
-                        : category === 'smartphones'
-                            ? 'Điện Thoại'
-                            : category === 'all'
-                                ? 'Tất Cả Sản Phẩm'
-                                : category}
-                </button>
-            ))}
-        </div>
-    );
-
-    const filteredBrandProducts = [...new Set(filteredProducts.map((product) => product.brand))];
-    const filteredCategoryProducts = [
-        ...new Set(filteredProducts.map((product) => product.category)),
-    ];
-
-    const brandButtons = (
-        <div className="filters">
-            {filteredBrandProducts.map((brand) => (
-                <button
-                    key={brand}
-                    onClick={() => handleFilterBrandCategory(brand, 'all')}
-                    className="btn btn-secondary"
-                >
-                    {brand === 'smartphones' ? 'Điện Thoại' : brand}
-                </button>
-            ))}
-        </div>
-    );
-
-    const handleAddProduct = () => {
-        setShowPopup(true); // Mở popup khi bấm vào button "Thêm Sản Phẩm"
-    };
-
-    const handleCancel = () => {
-        setShowPopup(false); // Đóng popup khi bấm vào nút "Huỷ"
+        // Đóng popup
+        closePopup();
     };
 
     return (
         <div className="container">
-            {showPopup && ( // Hiển thị popup nếu showPopup là true
-                <div className="popup">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label className="form-label">ID</label>
-                            <input
-                                type="text"
-                                name="id"
-                                value={formData.id}
-                                onChange={handleInputChange}
-                                placeholder="ID"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Title</label>
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleInputChange}
-                                placeholder="Title"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Price</label>
-                            <input
-                                type="text"
-                                name="price"
-                                value={formData.price}
-                                onChange={handleInputChange}
-                                placeholder="Price"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Brand</label>
-                            <input
-                                type="text"
-                                name="brand"
-                                value={formData.brand}
-                                onChange={handleInputChange}
-                                placeholder="Brand"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Category</label>
-                            <input
-                                type="text"
-                                name="category"
-                                value={formData.category}
-                                onChange={handleInputChange}
-                                placeholder="Category"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Thumbnail</label>
-                            <input
-                                type="text"
-                                name="thumbnail"
-                                value={formData.thumbnail}
-                                onChange={handleInputChange}
-                                placeholder="Thumbnail"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="popup-buttons">
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                            <button onClick={handleCancel} className="btn btn-secondary">
-                                Huỷ
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            )}
 
-            <button onClick={handleAddProduct} className="btn btn-primary">
+            <button className="btn btn-primary add-product" onClick={openPopup}>
                 Thêm Sản Phẩm
             </button>
+            <div className="row">
+                {createProducts.map((product) => (
+                    <div key={product.id} className="col-md-2">
+                        <div className="card mb-3">
+                            <img src={product.thumbnail} className="card-img-top" alt={product.title} />
+                            <div className="card-body">
+                                <h5 className="card-title">{product.title}</h5>
+                                <p className="card-text">{product.price.toLocaleString()}</p>
 
-            {filterButtons}
-            {brandButtons}
-
-            <div className="product-list">
-                {filteredProducts.map((product) => (
-                    <div key={product.id}>
-                        <h3>{product.title}</h3>
-                        <img src={product.thumbnail} alt={product.title} />
-                        <p>Price: {product.price}</p>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
+
+
+
+            {isPopupOpen && (
+                <div className="popup">
+                    <h2>Thêm Sản Phẩm</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>ID:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="id"
+                                value={newProductData.id}
+                                onChange={handleInputChange}
+                                placeholder="Nhập ID"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Title:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="title"
+                                value={newProductData.title}
+                                onChange={handleInputChange}
+                                placeholder="Nhập tiêu đề"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Price:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="price"
+                                value={newProductData.price}
+                                onChange={handleInputChange}
+                                placeholder="Nhập giá"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Brand:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="brand"
+                                value={newProductData.brand}
+                                onChange={handleInputChange}
+                                placeholder="Nhập nhãn hiệu"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Category:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="category"
+                                value={newProductData.category}
+                                onChange={handleInputChange}
+                                placeholder="Nhập danh mục"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Thumbnail:</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="thumbnail"
+                                value={newProductData.thumbnail}
+                                onChange={handleInputChange}
+                                placeholder="Nhập URL ảnh"
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="button" className="btn btn-secondary" onClick={closePopup}>
+                            Huỷ
+                        </button>
+                    </form>
+                </div>
+
+            )}
         </div>
     );
 };

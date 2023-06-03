@@ -5,13 +5,12 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
         onFilterChange(filter);
     };
 
-    const createBrandTags = () => {
+    const createBrandTagsSmartphones = () => {
         if (!allProducts) {
             return null;
         }
 
         const filteredProducts = allProducts.filter(
-
             (product) => product.category.toLowerCase() === 'smartphones'
         );
 
@@ -40,6 +39,43 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
 
         return brandTags;
     };
+
+
+    const createBrandTagsLaptops = () => {
+        if (!allProducts) {
+            return null;
+        }
+
+        const filteredProducts = allProducts.filter(
+            (product) => product.category.toLowerCase() === 'laptops'
+        );
+
+        const brands = {};
+
+        filteredProducts.forEach((product) => {
+            if (brands[product.brand]) {
+                brands[product.brand]++;
+            } else {
+                brands[product.brand] = 1;
+            }
+        });
+
+        const brandTags = [];
+        for (const brand in brands) {
+            brandTags.push(
+                <button
+                    key={brand}
+                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
+                    onClick={() => handleClick(brand)}
+                >
+                    {brand}
+                </button>
+            );
+        }
+
+        return brandTags;
+    };
+
 
     const createAllProductsBrandTags = () => {
         if (!allProducts) {
@@ -130,9 +166,15 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
                 Dock Sạc
             </button>
 
-            {activeFilter === 'Điện Thoại' && (
+            {(activeFilter === 'Điện Thoại') && (
                 <div className="brand-tags">
-                    {createBrandTags()}
+                    {createBrandTagsSmartphones()}
+                </div>
+            )}
+
+            {(activeFilter === 'Laptop') && (
+                <div className="brand-tags">
+                    {createBrandTagsLaptops()}
                 </div>
             )}
 
@@ -141,7 +183,6 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
                     {createAllProductsBrandTags()}
                 </div>
             )}
-
         </div>
     );
 };

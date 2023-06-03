@@ -67,15 +67,22 @@ const AllProducts = () => {
             return product.category.toLowerCase() === 'tablets';
         } else if (activeFilter === 'Đồng Hồ') {
             return product.category.toLowerCase() === 'watches';
+        } else if (activeFilter === 'Sạc Dự Phòng') {
+            return product.category.toLowerCase() === 'powerbanks';
+        } else if (activeFilter === 'Chuột') {
+            return product.category.toLowerCase() === 'mouses';
+        } else if (activeFilter === 'Dock Sạc') {
+            return product.category.toLowerCase() === 'docks';
         } else {
             return false;
         }
     });
 
+
+
     return (
         <div className="container">
-            <FilterProducts activeFilter={activeFilter} onFilterChange={handleFilterChange} />
-
+            <FilterProducts activeFilter={activeFilter} onFilterChange={handleFilterChange} allProducts={createProducts} />
             <button className="btn btn-primary add-product" onClick={openPopup}>
                 Thêm Sản Phẩm
             </button>

@@ -77,6 +77,42 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
     };
 
 
+    const createBrandTagsTablets = () => {
+        if (!allProducts) {
+            return null;
+        }
+
+        const filteredProducts = allProducts.filter(
+            (product) => product.category.toLowerCase() === 'tablets'
+        );
+
+        const brands = {};
+
+        filteredProducts.forEach((product) => {
+            if (brands[product.brand]) {
+                brands[product.brand]++;
+            } else {
+                brands[product.brand] = 1;
+            }
+        });
+
+        const brandTags = [];
+        for (const brand in brands) {
+            brandTags.push(
+                <button
+                    key={brand}
+                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
+                    onClick={() => handleClick(brand)}
+                >
+                    {brand}
+                </button>
+            );
+        }
+
+        return brandTags;
+    };
+
+
     const createAllProductsBrandTags = () => {
         if (!allProducts) {
             return null;
@@ -175,6 +211,12 @@ const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
             {(activeFilter === 'Laptop') && (
                 <div className="brand-tags">
                     {createBrandTagsLaptops()}
+                </div>
+            )}
+
+            {(activeFilter === 'Tablet') && (
+                <div className="brand-tags">
+                    {createBrandTagsTablets()}
                 </div>
             )}
 

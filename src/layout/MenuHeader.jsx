@@ -196,19 +196,28 @@ export default function MenuHeader() {
       {isBoxSearchVisible && (
         <div className="box-search">
           <div className="Product-search-list d-flex flex-column mb-3">
-            <div className="btn-close" onClick={() => {
-              setIsBoxSearchVisible(false); // Ẩn div box-search
-              onSearchProduct(''); // Đặt lại giá trị tìm kiếm
-            }}></div>
-            {products.map((item) => (
-              <div key={item.id} className="box-items">
-                <img src={item.thumbnail} alt="Product Thumbnail" />
+            <div
+              className="btn-close"
+              onClick={() => {
+                setIsBoxSearchVisible(false); // Ẩn div box-search
+                onSearchProduct(''); // Đặt lại giá trị tìm kiếm
+              }}
+            ></div>
+            {products.length > 0 ? (
+              products.map((item) => (
+                <div key={item.id} className="box-items d-flex justify-content-between align-items-center">
+                  <img src={item.thumbnail} alt="Product Thumbnail" />
 
-                <p>{item.name}</p>
-                <p>{item.title}</p>
-                <p>{item.price}</p>
+                  <p>{item.name}</p>
+                  <p>{item.title}</p>
+                  <p>{item.price}</p>
+                </div>
+              ))
+            ) : (
+              <div className="no-items">
+                Không có sản phẩm cần tìm, hãy nhập từ khoá mới
               </div>
-            ))}
+            )}
           </div>
         </div>
       )}

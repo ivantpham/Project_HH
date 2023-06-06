@@ -82,6 +82,14 @@ header .nav_item {
   top: 10%;
   left: 50;
 }
+.box-search .Product-search-list .box-items {
+  width: 500px;
+  margin: 0 auto;
+  padding: 5px;
+}
+.box-search .Product-search-list .box-items:hover {
+  background-color: #0cbde4;
+}
 .box-search .Product-search-list img {
   width: 12%;
 }

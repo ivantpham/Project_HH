@@ -201,17 +201,18 @@ const AllProducts = ({ onAllProductsChange }) => {
     return (
         <div className='container'>
 
-            <div className='search-product'>
-                <input type="text" placeholder="Nhập từ khóa" />
 
-            </div>
 
             <div className='btn-group'>
-                <button
-                    className={`btn btn-primary category-btn ${filter === 'All' ? 'active' : ''}`}
-                    onClick={() => handleCategoryFilter('All')}
-                >
+
+
+                <button type="button" className={`btn btn-primary category-btn ${filter === 'All' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('All')}>
                     Tất Cả Sản Phẩm
+                    <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
+                        {filteredProducts.length}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
                 </button>
                 <button
                     className={`btn btn-primary category-btn ${filter === 'smartphones' ? 'active' : ''}`}
@@ -261,7 +262,6 @@ const AllProducts = ({ onAllProductsChange }) => {
 
 
             {renderBrandButtons()}
-            <p className="total-products">Tổng số lượng sản phẩm: {filteredProducts.length}</p>
             {isLoggedIn && user?.email === 'admin@hoangha.com' && (
                 <button className="btn btn-primary" onClick={handleAddProduct}>Thêm Sản Phẩm Mới</button>
             )}

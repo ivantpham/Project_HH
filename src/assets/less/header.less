@@ -83,3 +83,52 @@ header {
 
 
 }
+
+.box-search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Mờ mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+
+
+
+    .Product-search-list {
+        background-color: #fff;
+        width: 600px;
+        height: 100%;
+        padding: 20px;
+        position: fixed;
+        top: 10%;
+        left: 50;
+
+        img {
+            width: 12%;
+        }
+
+        .btn-close {
+            position: fixed;
+            top: 12%;
+            left: 67%;
+        }
+    }
+
+    .Product-search-list>div {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+
+
+
+
+.Product-search-list .Product-search-list p {
+    margin: 5px 0;
+}

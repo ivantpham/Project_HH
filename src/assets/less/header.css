@@ -60,3 +60,40 @@ header .nav_item {
   align-items: center;
   justify-content: space-between;
 }
+.box-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Mờ mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+.box-search .Product-search-list {
+  background-color: #fff;
+  width: 600px;
+  height: 100%;
+  padding: 20px;
+  position: fixed;
+  top: 10%;
+  left: 50;
+}
+.box-search .Product-search-list img {
+  width: 12%;
+}
+.box-search .Product-search-list .btn-close {
+  position: fixed;
+  top: 12%;
+  left: 67%;
+}
+.box-search .Product-search-list > div {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.Product-search-list .Product-search-list p {
+  margin: 5px 0;
+}

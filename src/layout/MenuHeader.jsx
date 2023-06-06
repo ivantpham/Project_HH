@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import "../assets/less/header.css";
 import { getDataProduct } from '../api/dataDrawFilter';
+import Search from '../components/Search';
 
 import {
   createUserWithEmailAndPassword,
@@ -12,7 +13,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/fire";
 import AllProducts from "../components/AllProducts";
-
 
 // Tạo Context
 export const ValueContext = createContext();
@@ -47,7 +47,17 @@ export default function MenuHeader() {
   };
 
   const handleClosePopup = () => {
+    setFormData({
+      id: '',
+      title: '',
+      price: '',
+      category: '',
+      brand: '',
+      thumbnail: '',
+    });
     setIsPopupOpen(false);
+    onSearchProduct(''); // Đặt lại giá trị tìm kiếm
+    setIsBoxSearchVisible(false); // Ẩn div box-search
   };
 
   const handleFormSubmit = (e) => {
@@ -115,6 +125,29 @@ export default function MenuHeader() {
   const isSignInPage = location.pathname === '/sign-in';
   const isSignUpPage = location.pathname === '/sign-up';
 
+  // Hàm SEARCH
+  const storedProducts = localStorage.getItem('ProductsTask');
+  const initialProducts = storedProducts ? JSON.parse(storedProducts) : [];
+
+  const [products, setProducts] = useState(initialProducts);
+  const [isSearchEmpty, setIsSearchEmpty] = useState(true);
+  const [isBoxSearchVisible, setIsBoxSearchVisible] = useState(false);
+
+  const onSearchProduct = (value) => {
+    console.log("hihi", value);
+    const ProductsTask = JSON.parse(localStorage.getItem('ProductsTask')) || [];
+    const res = ProductsTask.filter((i) => {
+      const r = i.title.toLowerCase().includes(value.toLowerCase()) || i.brand.toLowerCase().includes(value.toLowerCase());
+      return r;
+    });
+    console.log('res', res);
+    setProducts(res);
+    setIsSearchEmpty(value === ''); // Kiểm tra xem giá trị tìm kiếm có rỗng không
+    setIsBoxSearchVisible(value !== ''); // Kiểm tra xem có dữ liệu tìm kiếm hay không
+  };
+
+  // Hàm SEARCH
+
   return (
     <>
       <header className={`headers ${isLoggedIn && !isLoggedOut ? 'fixed-header' : ''}`}>
@@ -124,7 +157,7 @@ export default function MenuHeader() {
           </Link>
           <ul className="nav_items">
             <li className="nav_item">
-              <input type="text" className="search-box" placeholder="Nhập từ khoá..." />
+              <Search onSearching={onSearchProduct} placeholder={'Nhập tên sản phẩm'} />
               <a href="#" className="nav_link">Bảo Hành</a>
               <a href="#" className="nav_link">Tra Cứu Đơn Hàng</a>
             </li>
@@ -133,7 +166,7 @@ export default function MenuHeader() {
             <>
               <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  <button type="button" class="d-flex align-items-center">
+                  <button type="button" className="d-flex align-items-center">
                     <div className="success_sign d-flex justify-content-around ">
                       <div className="image_account">
                         <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
@@ -149,7 +182,6 @@ export default function MenuHeader() {
                       <button onClick={handleLogout}>Sign Out</button>
                     </li>
                   </Dropdown.Item>
-
                 </Dropdown.Menu>
               </Dropdown>
             </>
@@ -161,7 +193,27 @@ export default function MenuHeader() {
         </nav>
       </header>
 
-      {!isSignInPage && !isSignUpPage && (
+      {isBoxSearchVisible && (
+        <div className="box-search">
+          <div className="Product-search-list d-flex flex-column mb-3">
+            <div className="btn-close" onClick={() => {
+              setIsBoxSearchVisible(false); // Ẩn div box-search
+              onSearchProduct(''); // Đặt lại giá trị tìm kiếm
+            }}></div>
+            {products.map((item) => (
+              <div key={item.id} className="box-items">
+                <img src={item.thumbnail} alt="Product Thumbnail" />
+
+                <p>{item.name}</p>
+                <p>{item.title}</p>
+                <p>{item.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!isSearchEmpty && !isSignInPage && !isSignUpPage && (
         <ValueContext.Provider value={apiProducts}>
           <div className="containers">
             {/* <AllProducts /> */}

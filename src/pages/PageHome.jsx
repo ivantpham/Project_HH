@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import FilterProduct from "../components/FilterProducts"
 import AllProducts from "../components/AllProducts"
 import Products from "../components/Products"
+import SearchProducts from "../components/SearchProducts"
 
 
 export default function PageHome() {
@@ -13,6 +14,7 @@ export default function PageHome() {
    return (
       <>
          <AllProducts />
+
       </>
    )
 }

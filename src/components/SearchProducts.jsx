@@ -1,43 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/less/SearchProducts.css';
 
-const SearchProducts = ({ onAllProductsChange }) => {
-    const [searchInputValue, setSearchInputValue] = useState('');
-    const [filteredProducts, setFilteredProducts] = useState([]);
 
-    useEffect(() => {
-        const filterProducts = () => {
-            if (!onAllProductsChange || !searchInputValue) {
-                setFilteredProducts([]);
-                return;
-            }
-
-            const allProducts = onAllProductsChange();
-
-            const filtered = allProducts.filter((product) =>
-                product.title.toLowerCase().includes(searchInputValue.toLowerCase())
-            );
-
-            setFilteredProducts(filtered);
-        };
-
-        filterProducts();
-    }, [onAllProductsChange, searchInputValue]);
-
+const SearchProducts = () => {
     return (
         <div>
-            <input
-                type="text"
-                value={searchInputValue}
-                onChange={(e) => setSearchInputValue(e.target.value)}
-                placeholder="Tìm kiếm sản phẩm"
-            />
-            {filteredProducts.map((product) => (
-                <div key={product.id}>
-                    <p>{product.title}</p>
-                    <p>{product.price}</p>
-                    <img src={product.thumbnail} alt={product.title} />
+            <div className="search-products">
+                <div className="search-products-header">
+                    <h5 className="search-products-title">Hello World</h5>
                 </div>
-            ))}
+                <div className="search-products-body">
+                    <p>This is a popup with the message "Hello World".</p>
+                </div>
+                <div className="search-products-footer">
+                    <button type="button" className="btn btn-secondary">Close</button>
+                </div>
+            </div>
         </div>
     );
 };

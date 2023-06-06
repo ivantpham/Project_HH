@@ -1,0 +1,14 @@
+.modal-title {
+  color: #ff0000;
+  margin-top: 100px;
+  /*Thêm các luật CSS khác cho tiêu đề modal tại đây*/
+}
+.modal-body p {
+  font-size: 16px;
+  /*Thêm các luật CSS khác cho nội dung modal tại đây*/
+}
+.modal-footer button {
+  background-color: #0000ff;
+  color: #ffffff;
+  /*Thêm các luật CSS khác cho nút modal-footer tại đây*/
+}

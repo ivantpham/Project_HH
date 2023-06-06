@@ -1,7 +1,38 @@
-.filter-products button.selected {
-    background-color: #ccc;
-    /* Màu nền cho tag được chọn */
-    color: #fff;
-    /* Màu chữ cho tag được chọn */
-    /* Thêm các hiệu ứng CSS khác tùy ý */
+.container {
+    margin-top: 90px;
+
+    .btn-group {
+        .category-btn {
+            background-color: #019a82;
+            margin: 0 5px;
+        }
+
+        .brand-btn {
+            margin: 10px 5px;
+            border-radius: 8px;
+        }
+
+        .btn-all {
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .brand-btn.active {
+            margin: 10px 5px;
+            border-radius: 8px;
+        }
+
+
+        .btn-group.d-flex.flex-wrap {
+            justify-content: flex-start;
+        }
+
+
+        .category-btn.active {
+            background-color: #00483e;
+            color: #ffffff;
+
+        }
+    }
+
 }

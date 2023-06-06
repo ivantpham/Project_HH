@@ -1,230 +1,131 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getDataProduct } from '../api/dataDrawFilter';
 
-const FilterProducts = ({ activeFilter, onFilterChange, allProducts }) => {
-    const handleClick = (filter) => {
-        onFilterChange(filter);
-    };
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/less/FilterProduct.css';
 
-    const createBrandTagsSmartphones = () => {
-        if (!allProducts) {
-            return null;
+const FilterProducts = ({ allProducts, onAllProductsChange }) => {
+
+    const [filter, setFilter] = useState('All');
+    const [brandFilter, setBrandFilter] = useState('All');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
+    useEffect(() => {
+        setFilteredProducts(allProducts);
+        if (typeof onAllProductsChange === 'function') {
+            onAllProductsChange(allProducts);
         }
+    }, [allProducts]);
 
-        const filteredProducts = allProducts.filter(
-            (product) => product.category.toLowerCase() === 'smartphones'
-        );
-
-        const brands = {};
-
-        filteredProducts.forEach((product) => {
-            if (brands[product.brand]) {
-                brands[product.brand]++;
-            } else {
-                brands[product.brand] = 1;
+    useEffect(() => {
+        const updatedFilteredProducts = allProducts.filter((product) => {
+            if (filter === 'All') {
+                return true;
             }
+            return product.category === filter;
+        }).filter((product) => {
+            if (brandFilter === 'All') {
+                return true;
+            }
+            return product.brand === brandFilter;
         });
 
-        const brandTags = [];
-        for (const brand in brands) {
-            brandTags.push(
-                <button
-                    key={brand}
-                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
-                    onClick={() => handleClick(brand)}
-                >
-                    {brand}
-                </button>
-            );
-        }
+        setFilteredProducts(updatedFilteredProducts);
+    }, [allProducts, filter, brandFilter]);
 
-        return brandTags;
+    const handleCategoryFilter = (category) => {
+        setFilter(category);
+        setBrandFilter('All');
     };
 
-
-    const createBrandTagsLaptops = () => {
-        if (!allProducts) {
-            return null;
-        }
-
-        const filteredProducts = allProducts.filter(
-            (product) => product.category.toLowerCase() === 'laptops'
-        );
-
-        const brands = {};
-
-        filteredProducts.forEach((product) => {
-            if (brands[product.brand]) {
-                brands[product.brand]++;
-            } else {
-                brands[product.brand] = 1;
-            }
-        });
-
-        const brandTags = [];
-        for (const brand in brands) {
-            brandTags.push(
-                <button
-                    key={brand}
-                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
-                    onClick={() => handleClick(brand)}
-                >
-                    {brand}
-                </button>
-            );
-        }
-
-        return brandTags;
-    };
-
-
-    const createBrandTagsTablets = () => {
-        if (!allProducts) {
-            return null;
-        }
-
-        const filteredProducts = allProducts.filter(
-            (product) => product.category.toLowerCase() === 'tablets'
-        );
-
-        const brands = {};
-
-        filteredProducts.forEach((product) => {
-            if (brands[product.brand]) {
-                brands[product.brand]++;
-            } else {
-                brands[product.brand] = 1;
-            }
-        });
-
-        const brandTags = [];
-        for (const brand in brands) {
-            brandTags.push(
-                <button
-                    key={brand}
-                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
-                    onClick={() => handleClick(brand)}
-                >
-                    {brand}
-                </button>
-            );
-        }
-
-        return brandTags;
-    };
-
-
-    const createAllProductsBrandTags = () => {
-        if (!allProducts) {
-            return null;
-        }
-
-        const allBrands = {};
-
-        allProducts.forEach((product) => {
-            if (allBrands[product.brand]) {
-                allBrands[product.brand]++;
-            } else {
-                allBrands[product.brand] = 1;
-            }
-        });
-
-        const allProductsBrandTags = [];
-        for (const brand in allBrands) {
-            allProductsBrandTags.push(
-                <button
-                    key={brand}
-                    className={`btn ${activeFilter === brand ? 'btn-primary active' : 'btn-secondary'}`}
-                    onClick={() => handleClick(brand)}
-                >
-                    {brand}
-                </button>
-            );
-        }
-
-        return allProductsBrandTags;
+    const handleBrandFilter = (brand) => {
+        setBrandFilter(brand);
     };
 
     return (
-        <div className="filter">
-            <button
-                className={`btn ${activeFilter === 'All' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('All')}
-            >
-                Tất Cả Sản Phẩm
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Điện Thoại' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Điện Thoại')}
-            >
-                Điện Thoại
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Laptop' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Laptop')}
-            >
-                Laptop
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Tablet' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Tablet')}
-            >
-                Tablet
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Đồng Hồ' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Đồng Hồ')}
-            >
-                Đồng Hồ
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Sạc Dự Phòng' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Sạc Dự Phòng')}
-            >
-                Sạc Dự Phòng
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Chuột' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Chuột')}
-            >
-                Chuột
-            </button>
-
-            <button
-                className={`btn ${activeFilter === 'Dock Sạc' ? 'btn-primary active' : 'btn-secondary'}`}
-                onClick={() => handleClick('Dock Sạc')}
-            >
-                Dock Sạc
-            </button>
-
-            {(activeFilter === 'Điện Thoại') && (
-                <div className="brand-tags">
-                    {createBrandTagsSmartphones()}
-                </div>
-            )}
-
-            {(activeFilter === 'Laptop') && (
-                <div className="brand-tags">
-                    {createBrandTagsLaptops()}
-                </div>
-            )}
-
-            {(activeFilter === 'Tablet') && (
-                <div className="brand-tags">
-                    {createBrandTagsTablets()}
-                </div>
-            )}
-
-            {activeFilter === 'All' && (
-                <div className="brand-tags">
-                    {createAllProductsBrandTags()}
-                </div>
-            )}
+        <div className='container'>
+            <div className='btn-group'>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'All' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('All')}
+                >
+                    Tất Cả Sản Phẩm
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'smartphones' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('smartphones')}
+                >
+                    Điện Thoại
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'laptops' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('laptops')}
+                >
+                    Laptop
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'tablets' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('tablets')}
+                >
+                    Tablet
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'watches' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('watches')}
+                >
+                    Đồng Hồ
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'powerbanks' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('powerbanks')}
+                >
+                    Sạc Dự Phòng
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'mouses' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('mouses')}
+                >
+                    Chuột
+                </button>
+                <button
+                    className={`btn btn-primary category-btn ${filter === 'docks' ? 'active' : ''}`}
+                    onClick={() => handleCategoryFilter('docks')}
+                >
+                    Dock Sạc
+                </button>
+            </div>
+            <br />
+            <div className='btn-group d-flex flex-wrap '>
+                <button className={`btn btn-secondary brand-btn btn-all ${brandFilter === 'All' ? 'active' : ''}`} onClick={() => handleBrandFilter('All')}>
+                    All Brands
+                </button>
+                {filteredProducts
+                    .reduce((brands, product) => {
+                        if (!brands.includes(product.brand)) {
+                            brands.push(product.brand);
+                        }
+                        return brands;
+                    }, [])
+                    .map(brand => (
+                        <button
+                            key={brand}
+                            className={`btn btn-secondary brand-btn ${brandFilter === brand ? 'active' : ''}`}
+                            onClick={() => handleBrandFilter(brand)}
+                        >
+                            {brand}
+                        </button>
+                    ))}
+            </div>
+            <br />
+            <div className='row'>
+                {filteredProducts.map(product => (
+                    <div key={product.id} className='col-md-2'>
+                        <img src={product.thumbnail} alt={product.id} className='img-fluid' />
+                        <h3>{product.title}</h3>
+                        <p>Price: {product.price}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

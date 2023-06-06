@@ -11,8 +11,7 @@ export default function PageHome() {
    }, [author])
    return (
       <>
-         <h2 className="text-red-700">Home Page</h2>
-         {/* <FilterProduct /> */}
+
          <AllProducts />
       </>
    )

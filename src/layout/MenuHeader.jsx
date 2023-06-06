@@ -1,9 +1,9 @@
-import "../assets/less/header.less";
+import React, { useState, useEffect, useRef, createContext, useContext } from "react";
 import { signOut } from "firebase/auth";
-import { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
-import { iconClose, iconHamburger } from "@Assets/icons";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
+import "../assets/less/header.css";
+import { getDataProduct } from '../api/dataDrawFilter';
 
 import {
   createUserWithEmailAndPassword,
@@ -11,8 +11,19 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase/fire";
+import AllProducts from "../components/AllProducts";
+
+
+// Tạo Context
+export const ValueContext = createContext();
 
 export default function MenuHeader() {
+  const location = useLocation();
+
+  // State lưu product
+  const [apiProducts, setApiProducts] = useState(getDataProduct().products);
+
+  // State lưu product
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,6 +31,41 @@ export default function MenuHeader() {
   const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   const dropdownRef = useRef(null);
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    id: '',
+    title: '',
+    price: '',
+    category: '',
+    brand: '',
+    thumbnail: '',
+  });
+
+  const handleDropdownToggle2 = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Thực hiện các xử lý lưu dữ liệu từ form
+    // Ví dụ: gửi dữ liệu đến server, lưu vào cơ sở dữ liệu, vv.
+
+    // Sau khi lưu thành công, đặt lại giá trị form và đóng popup
+    setFormData({
+      id: '',
+      title: '',
+      price: '',
+      category: '',
+      brand: '',
+      thumbnail: '',
+    });
+    setIsPopupOpen(false);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -65,10 +111,13 @@ export default function MenuHeader() {
   const isHoangHaEmail = user?.email?.includes('@hoangha.com');
   console.log("isHoangHaEmail", isHoangHaEmail);
 
+  // Kiểm tra đường dẫn hiện tại
+  const isSignInPage = location.pathname === '/sign-in';
+  const isSignUpPage = location.pathname === '/sign-up';
+
   return (
     <>
-      {/* CSS link */}
-      <header className="headers">
+      <header className={`headers ${isLoggedIn && !isLoggedOut ? 'fixed-header' : ''}`}>
         <nav className="nav">
           <Link className="logo" to={''} >
             <img src="https://hoanghamobile.com/Content/web/img/logo-text.png" alt="" className="logo" />
@@ -80,17 +129,29 @@ export default function MenuHeader() {
             </li>
           </ul>
           {isLoggedIn && !isLoggedOut ? (
-            <div className="success_sign">
-              <div className="image_account">
-                <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
-              </div>
-              <div className="name_account" onClick={handleDropdownToggle}>{user?.email}</div>
-              {isDropdownOpen && (
-                <div ref={dropdownRef} className="dropdown">
-                  <button onClick={handleLogout}>Sign Out</button>
-                </div>
-              )}
-            </div>
+            <>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <button type="button" class="d-flex align-items-center">
+                    <div className="success_sign d-flex justify-content-around ">
+                      <div className="image_account">
+                        <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
+                      </div>
+                      <div className="name_account" >{user?.email}</div>
+                    </div>
+                  </button>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <li>
+                      <button onClick={handleLogout}>Sign Out</button>
+                    </li>
+                  </Dropdown.Item>
+
+                </Dropdown.Menu>
+              </Dropdown>
+            </>
           ) : (
             <Link className="signin-signup" to={'/sign-in'} >
               <button className="button-login" id='form-open'>Đăng Nhập</button>
@@ -98,6 +159,14 @@ export default function MenuHeader() {
           )}
         </nav>
       </header>
+
+      {!isSignInPage && !isSignUpPage && (
+        <ValueContext.Provider value={apiProducts}>
+          <div className="containers">
+            {/* <AllProducts /> */}
+          </div>
+        </ValueContext.Provider>
+      )}
     </>
   );
 }

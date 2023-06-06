@@ -32,7 +32,7 @@ function App() {
     if (isLoggedIn && redirectTo) {
       setTimeout(() => {
         window.location.href = redirectTo; // Thực hiện chuyển hướng
-      }, 3000);
+      }, 1000);
     }
   }, [user, isLoggedIn, redirectTo]);
 
@@ -54,6 +54,13 @@ function App() {
   const logout = async () => {
     await signOut(auth);
   };
+
+
+  // ________________________________________________________________
+
+
+  // ________________________________________________________________
+
 
   return (
     <div className="App d-flex align-items-center justify-content-center vh-100">

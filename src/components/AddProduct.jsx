@@ -1,203 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import { getDataProduct } from '../api/dataDrawFilter';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import "../assets/less/AddProduct.css"
 
-import 'bootstrap/dist/css/bootstrap.css';
-import '../assets/less/AddProduct.css';
+const AddProducts = ({ onClose }) => {
+    const [productData, setProductData] = useState({
+        id: '',
+        title: '',
+        price: '',
+        category: '',
+        brand: '',
+        thumbnail: '',
+    });
 
-const AddProduct = ({ onAddProduct }) => {
-    const [category, setCategory] = useState('');
-    const [brand, setBrand] = useState('');
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
-    const [id, setId] = useState('');
-    const [thumbnail, setThumbnail] = useState('');
-    const [showSuggestions, setShowSuggestions] = useState(false);
-
-    const suggestedCategories = [
-        'smartphones',
-        'watches',
-        'laptops',
-        'tablets',
-        'mouses',
-        'powerbanks',
-        'docks',
-    ];
-
-    useEffect(() => {
-        const categoryData = localStorage.getItem('category');
-        const brandData = localStorage.getItem('brand');
-        const titleData = localStorage.getItem('title');
-        const priceData = localStorage.getItem('price');
-        const idData = localStorage.getItem('id');
-        const thumbnailData = localStorage.getItem('thumbnail');
-
-        setCategory(categoryData || '');
-        setBrand(brandData || '');
-        setTitle(titleData || '');
-        setPrice(priceData || '');
-        setId(idData || '');
-        setThumbnail(thumbnailData || '');
-    }, []);
-
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProductData((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const handlePriceChange = (event) => {
-        setPrice(event.target.value);
-    };
-
-    const handleThumbnailChange = (event) => {
-        setThumbnail(event.target.value);
-    };
-
-    const handleCategoryChange = (event) => {
-        setCategory(event.target.value);
-    };
-
-    const handleIdChange = (event) => {
-        setId(event.target.value);
-    };
-
-    const handleCategoryClick = (suggestedCategory) => {
-        setCategory(suggestedCategory);
-        setShowSuggestions(false);
-    };
-
-    const handleAddProduct = () => {
-        const product = {
-            id,
-            title,
-            price,
-            thumbnail,
-        };
-
-        getDataProduct(product);
-
-        localStorage.setItem('category', category);
-        localStorage.setItem('brand', brand);
-        localStorage.setItem('title', title);
-        localStorage.setItem('price', price);
-        localStorage.setItem('id', id);
-        localStorage.setItem('thumbnail', thumbnail);
-
-        onAddProduct(product);
-        resetForm();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Lưu dữ liệu vào ProductsTask của localStorage
+        const products = JSON.parse(localStorage.getItem('ProductsTask')) || [];
+        products.push(productData);
+        localStorage.setItem('ProductsTask', JSON.stringify(products));
+        // Đóng popup
+        onClose();
     };
 
     const handleCancel = () => {
-        window.location.href = 'http://localhost:3000/Project_HH';
-    };
-
-    const resetForm = () => {
-        setCategory('');
-        setBrand('');
-        setTitle('');
-        setPrice('');
-        setId('');
-        setThumbnail('');
-    };
-
-    const renderSuggestions = () => {
-        if (showSuggestions) {
-            return (
-                <div className="suggested-categories">
-                    {suggestedCategories.map((suggestedCategory, index) => (
-                        <div
-                            className="suggested-category"
-                            key={index}
-                            onClick={() => handleCategoryClick(suggestedCategory)}
-                        >
-                            {suggestedCategory}
-                        </div>
-                    ))}
-                </div>
-            );
-        }
-        return null;
+        onClose();
     };
 
     return (
-        <div className="add-product-popup">
-            <div className="add-product-popup-content">
-                <h2>Thêm sản phẩm mới</h2>
-                <div className="form-group">
-                    <label htmlFor="category">Category</label>
+        <div className="popup">
+            <div className="popup-content">
+                <h2>Add Product</h2>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="id">ID:</label>
                     <input
                         type="text"
-                        className="form-control"
-                        id="category"
-                        placeholder="Category"
-                        value={category}
-                        onChange={handleCategoryChange}
-                        onFocus={() => setShowSuggestions(true)}
-                    />
-                    {renderSuggestions()}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="brand">Brand</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="brand"
-                        placeholder="Brand"
-                        value={brand}
-                        onChange={(e) => setBrand(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="title">Tiêu đề</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="title"
-                        placeholder="Tiêu đề"
-                        value={title}
-                        onChange={handleTitleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="price">Giá</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="price"
-                        placeholder="Giá"
-                        value={price}
-                        onChange={handlePriceChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="thumbnail">Link ảnh</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="thumbnail"
-                        placeholder="Link ảnh"
-                        value={thumbnail}
-                        onChange={handleThumbnailChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="id">ID</label>
-                    <input
-                        type="text"
-                        className="form-control"
                         id="id"
-                        placeholder="ID"
-                        value={id}
-                        onChange={handleIdChange}
+                        name="id"
+                        value={productData.id}
+                        onChange={handleChange}
+                        required
                     />
-                </div>
-                <button className="btn btn-primary" onClick={handleAddProduct}>
-                    Thêm
-                </button>
-                <button className="btn btn-secondary" onClick={handleCancel}>
-                    Hủy
-                </button>
+                    <label htmlFor="title">Title:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={productData.title}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label htmlFor="price">Price:</label>
+                    <input
+                        type="text"
+                        id="price"
+                        name="price"
+                        value={productData.price}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label htmlFor="category">Category:</label>
+                    <input
+                        type="text"
+                        id="category"
+                        name="category"
+                        value={productData.category}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label htmlFor="brand">Brand:</label>
+                    <input
+                        type="text"
+                        id="brand"
+                        name="brand"
+                        value={productData.brand}
+                        onChange={handleChange}
+                        required
+                    />
+                    <label htmlFor="thumbnail">Thumbnail:</label>
+                    <input
+                        type="text"
+                        id="thumbnail"
+                        name="thumbnail"
+                        value={productData.thumbnail}
+                        onChange={handleChange}
+                        required
+                    />
+                    <div className="buttons">
+                        <button type="submit">Submit</button>
+                        <button type="button" onClick={handleCancel}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     );
 };
 
-export default AddProduct;
+AddProducts.propTypes = {
+    onClose: PropTypes.func.isRequired,
+};
+
+export default AddProducts;

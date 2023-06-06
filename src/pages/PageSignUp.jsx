@@ -72,6 +72,8 @@ function App() {
     await signOut(auth);
   };
 
+
+
   return (
     <div className="App d-flex align-items-center justify-content-center vh-100">
       {!isLoggedIn && (

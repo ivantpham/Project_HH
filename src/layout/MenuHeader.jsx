@@ -124,6 +124,7 @@ export default function MenuHeader() {
           </Link>
           <ul className="nav_items">
             <li className="nav_item">
+              <input type="text" className="search-box" placeholder="Nhập từ khoá..." />
               <a href="#" className="nav_link">Bảo Hành</a>
               <a href="#" className="nav_link">Tra Cứu Đơn Hàng</a>
             </li>

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import FilterProduct from "../components/FilterProducts"
 import AllProducts from "../components/AllProducts"
+import Products from "../components/Products"
 
 
 export default function PageHome() {
@@ -11,7 +12,6 @@ export default function PageHome() {
    }, [author])
    return (
       <>
-
          <AllProducts />
       </>
    )

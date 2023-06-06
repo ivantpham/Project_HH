@@ -1,72 +1,44 @@
-import React, { useContext, useEffect, useState } from "react";
-import ProductsItem from "@Components/ProductsItem";
-import "@Assets/less/products.less";
-import "@Assets/less/productsItem.less";
-import Search from "./Search";
-import AppContext from "@/context/AppContext";
+import React, { useContext, useEffect, useState } from 'react';
+import ProductsItem from '@Components/ProductsItem';
+import '@Assets/less/products.less';
+import Search from './Search';
+import AppContext from '@/context/AppContext';
+import { getDataProduct } from '../api/dataDrawFilter';
 
 function Products({ title, children }) {
-  const {theme,setTheme} = useContext(AppContext)
-  const [products, setProducts] = useState();
-  const [productsSort, setProductsSort] = useState();
-
-  console.log('theme', theme);
-  // setTimeout(() =>  setTheme(pr => ({...pr, theme: 'light edit'})),2000)
-  const onDeleteProduct = (id) => {
-    const newData = products.filter((p) => p.id !== id);
-    setProducts(newData);
-    setProductsSort(newData);
-  };
+  const { theme, setTheme } = useContext(AppContext);
+  const [products, setProducts] = useState(getDataProduct.products);
+  const [search, setSearch] = useState('');
 
   const onSearchProduct = (value) => {
-    if (value) setProductsSort(
-      products.filter((p) => {
-        return p.title.toLowerCase().includes(value.toLowerCase());
-      })
-    );
-    else  setProductsSort(products)
-  };
-
-  const onUpdateProduct = (item) => {
-    console.log("onUpdate:", item);
-  };
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => {
-        return res.json();
-      })
-      .then(({ products }) => {
-        console.log("productL:", products);
-        if (products) {
-          setProducts(products);
-          setProductsSort(products);
-        }
-      });
-  }, []);
+    const res = getDataProduct.products.filter((i) => {
+      const r = i.title.toLowerCase().includes(value.toLowerCase())
+      return r
+    })
+    setProducts(res)
+  }
 
   return (
-    <>
+    <div className="mt-9">
+      <div className="Product-list grid grid-cols-6 gap-6">
+        {products && products.map((item) => (
+          <div key={item.id}>
+            <img src={item.thumbnail}></img>
+            <p>{item.name}</p>
+            <p>{item.title}</p>
+            <p>{item.price}</p>
+          </div>
+        ))}
+      </div>
       <div className="flex mb-4 w-full justify-between items-center">
         <div className="search-product">
           <h2>Tìm sản phẩm</h2>
-          <Search onSearching={onSearchProduct} placeholder={'Nhập tên sản phẩm'}/>
+          <Search onSearching={onSearchProduct} placeholder={'Nhập tên sản phẩm'} />
         </div>
         <span>số lượng: {products?.length || 0}</span>
       </div>
-      <div className="products">
-        {productsSort
-          ? productsSort.map((product) => (
-              <ProductsItem
-                item={product}
-                key={product?.id}
-                onDelete={onDeleteProduct}
-                onUpdate={onUpdateProduct}
-              />
-            ))
-          : "Loading...."}
-      </div>
-    </>
+    </div>
   );
 }
+
 export default Products;

@@ -200,6 +200,12 @@ const AllProducts = ({ onAllProductsChange }) => {
 
     return (
         <div className='container'>
+
+            <div className='search-product'>
+                <input type="text" placeholder="Nhập từ khóa" />
+
+            </div>
+
             <div className='btn-group'>
                 <button
                     className={`btn btn-primary category-btn ${filter === 'All' ? 'active' : ''}`}

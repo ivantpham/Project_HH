@@ -12,13 +12,36 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/_/t_m_18.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/1/1.jpg",
-                    "https://i.dummyjson.com/data/products/1/2.jpg",
-                    "https://i.dummyjson.com/data/products/1/3.jpg",
-                    "https://i.dummyjson.com/data/products/1/4.jpg",
-                    "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-                ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Space Black',
+                        price: '26.390,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/08/44444.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/08/44444.png',
+                    },
+                    {
+                        id: 2,
+                        name: 'Silver',
+                        price: '26.390,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/08/33333.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/08/33333.png',
+                    },
+                    {
+                        id: 3,
+                        name: 'Gold',
+                        price: '26.390,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/08/222222.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/08/222222.png',
+                    },
+                    {
+                        id: 4,
+                        name: 'Deep Purple',
+                        price: '26.390,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/08/1111.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/08/1111.png',
+                    }
+                ],
             },
             {
                 id: 2,
@@ -31,12 +54,35 @@ export const getDataProduct = () => {
                 brand: "Innostyle",
                 category: "powerbanks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/n/innostyle_powermag_1.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/16/1.png",
-                    "https://i.dummyjson.com/data/products/16/2.webp",
-                    "https://i.dummyjson.com/data/products/16/3.jpg",
-                    "https://i.dummyjson.com/data/products/16/4.jpg",
-                    "https://i.dummyjson.com/data/products/16/thumbnail.jpg"
+                variants: [
+                    {
+                        id: 1,
+                        name: 'black',
+                        price: '890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/11/09/image-removebg-preview-65.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/11/09/image-removebg-preview-65.png',
+                    },
+                    {
+                        id: 2,
+                        name: 'Blue',
+                        price: '890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/11/09/image-removebg-preview-52_638036078111857497.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/11/09/image-removebg-preview-52_638036078111857497.png',
+                    },
+                    {
+                        id: 3,
+                        name: 'White',
+                        price: '890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/11/09/image-removebg-preview-66.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/11/09/image-removebg-preview-66.png',
+                    },
+                    {
+                        id: 4,
+                        name: 'Lavender',
+                        price: '890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/11/09/image-removebg-preview-64.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/11/09/image-removebg-preview-64.png',
+                    }
                 ]
             },
 
@@ -51,12 +97,14 @@ export const getDataProduct = () => {
                 brand: "Microsoft Surface",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_d_i_9.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/8/1.jpg",
-                    "https://i.dummyjson.com/data/products/8/2.jpg",
-                    "https://i.dummyjson.com/data/products/8/3.jpg",
-                    "https://i.dummyjson.com/data/products/8/4.jpg",
-                    "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Den',
+                        price: '29.490,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/03/09/thinkpad-e15-gen-4-1.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/03/09/thinkpad-e15-gen-4-1.png',
+                    }
                 ]
             },
 
@@ -71,12 +119,21 @@ export const getDataProduct = () => {
                 brand: "OPPO",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/p/oppo_reno8_pro_1_.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/4/1.jpg",
-                    "https://i.dummyjson.com/data/products/4/2.jpg",
-                    "https://i.dummyjson.com/data/products/4/3.jpg",
-                    "https://i.dummyjson.com/data/products/4/4.jpg",
-                    "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Den',
+                        price: '17,490,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/28/combo-product-reno8-pro-black-removebg-preview.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/28/combo-product-reno8-pro-black-removebg-preview.png',
+                    },
+                    {
+                        id: 2,
+                        name: 'xanh',
+                        price: '17,490,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/28/combo-product-reno8-pro-green-removebg-preview.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/28/combo-product-reno8-pro-green-removebg-preview.png',
+                    }
                 ]
             },
             {
@@ -90,15 +147,26 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/a/sansung_2__2.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/13/1.jpg",
-                    "https://i.dummyjson.com/data/products/13/2.png",
-                    "https://i.dummyjson.com/data/products/13/3.jpg",
-                    "https://i.dummyjson.com/data/products/13/4.jpg",
-                    "https://i.dummyjson.com/data/products/13/thumbnail.webp"
+                variants: [
+                    {
+                        id: 1,
+                        name: 'xam',
+                        price: '8,790,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/08/11/image-removebg-preview-21.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/08/11/image-removebg-preview-21.png',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Den',
+                        price: '8,790,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/08/11/image-removebg-preview-22.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/08/11/image-removebg-preview-22.png',
+
+                    }
+
                 ]
             },
-
             {
                 id: 6,
                 title: "Macbook Pro 14 inch 2021",
@@ -110,12 +178,12 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/p/r/pro_2021.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/6/1.png",
-                    "https://i.dummyjson.com/data/products/6/2.jpg",
-                    "https://i.dummyjson.com/data/products/6/3.png",
-                    "https://i.dummyjson.com/data/products/6/4.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/6/1.png",
+                //     "https://i.dummyjson.com/data/products/6/2.jpg",
+                //     "https://i.dummyjson.com/data/products/6/3.png",
+                //     "https://i.dummyjson.com/data/products/6/4.jpg"
+                // ]
             },
             {
                 id: 7,
@@ -128,12 +196,12 @@ export const getDataProduct = () => {
                 brand: "ASUS",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/1/11h50.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/7/1.jpg",
-                    "https://i.dummyjson.com/data/products/7/2.jpg",
-                    "https://i.dummyjson.com/data/products/7/3.jpg",
-                    "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/7/1.jpg",
+                //     "https://i.dummyjson.com/data/products/7/2.jpg",
+                //     "https://i.dummyjson.com/data/products/7/3.jpg",
+                //     "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
+                // ]
             },
             {
                 id: 8,
@@ -146,9 +214,9 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/2/s23-ultra-tim.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/3/1.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/3/1.jpg"
+                // ]
             },
             {
                 id: 9,
@@ -161,13 +229,13 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/a/tab_s8_ultra.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/9/1.jpg",
-                    "https://i.dummyjson.com/data/products/9/2.png",
-                    "https://i.dummyjson.com/data/products/9/3.png",
-                    "https://i.dummyjson.com/data/products/9/4.jpg",
-                    "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/9/1.jpg",
+                //     "https://i.dummyjson.com/data/products/9/2.png",
+                //     "https://i.dummyjson.com/data/products/9/3.png",
+                //     "https://i.dummyjson.com/data/products/9/4.jpg",
+                //     "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
+                // ]
             },
             {
                 id: 10,
@@ -180,12 +248,12 @@ export const getDataProduct = () => {
                 brand: "Huawei",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/t/gt3_pro.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/10/1.jpg",
-                    "https://i.dummyjson.com/data/products/10/2.jpg",
-                    "https://i.dummyjson.com/data/products/10/3.jpg",
-                    "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/10/1.jpg",
+                //     "https://i.dummyjson.com/data/products/10/2.jpg",
+                //     "https://i.dummyjson.com/data/products/10/3.jpg",
+                //     "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+                // ]
             },
             {
                 id: 11,
@@ -198,12 +266,12 @@ export const getDataProduct = () => {
                 brand: "Razer",
                 category: "mouses",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_11__2_53.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/11/1.jpg",
-                    "https://i.dummyjson.com/data/products/11/2.jpg",
-                    "https://i.dummyjson.com/data/products/11/3.jpg",
-                    "https://i.dummyjson.com/data/products/11/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/11/1.jpg",
+                //     "https://i.dummyjson.com/data/products/11/2.jpg",
+                //     "https://i.dummyjson.com/data/products/11/3.jpg",
+                //     "https://i.dummyjson.com/data/products/11/thumbnail.jpg"
+                // ]
             },
             {
                 id: 12,
@@ -216,13 +284,13 @@ export const getDataProduct = () => {
                 brand: "Aukey",
                 category: "powerbanks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/h/4h41_2.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/12/1.jpg",
-                    "https://i.dummyjson.com/data/products/12/2.jpg",
-                    "https://i.dummyjson.com/data/products/12/3.png",
-                    "https://i.dummyjson.com/data/products/12/4.jpg",
-                    "https://i.dummyjson.com/data/products/12/thumbnail.jpg"
-                ]
+                //     images: [
+                //         "https://i.dummyjson.com/data/products/12/1.jpg",
+                //         "https://i.dummyjson.com/data/products/12/2.jpg",
+                //         "https://i.dummyjson.com/data/products/12/3.png",
+                //         "https://i.dummyjson.com/data/products/12/4.jpg",
+                //         "https://i.dummyjson.com/data/products/12/thumbnail.jpg"
+                //     ]
             },
             {
                 id: 13,
@@ -235,11 +303,11 @@ export const getDataProduct = () => {
                 brand: "OnePlus",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/n/oneplus_11_-_black_-_rgb.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/5/1.jpg",
-                    "https://i.dummyjson.com/data/products/5/2.jpg",
-                    "https://i.dummyjson.com/data/products/5/3.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/5/1.jpg",
+                //     "https://i.dummyjson.com/data/products/5/2.jpg",
+                //     "https://i.dummyjson.com/data/products/5/3.jpg"
+                // ]
             },
             {
                 id: 14,
@@ -252,12 +320,12 @@ export const getDataProduct = () => {
                 brand: "Ugreen",
                 category: "docks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/f/r/frame_641_3_.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/14/1.jpg",
-                    "https://i.dummyjson.com/data/products/14/2.jpg",
-                    "https://i.dummyjson.com/data/products/14/3.jpg",
-                    "https://i.dummyjson.com/data/products/14/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/14/1.jpg",
+                //     "https://i.dummyjson.com/data/products/14/2.jpg",
+                //     "https://i.dummyjson.com/data/products/14/3.jpg",
+                //     "https://i.dummyjson.com/data/products/14/thumbnail.jpg"
+                // ]
             },
             {
                 id: 15,
@@ -270,13 +338,13 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/ipad-pro-13-select-wifi-spacegray-202210-02_3_3.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/15/1.jpg",
-                    "https://i.dummyjson.com/data/products/15/2.jpg",
-                    "https://i.dummyjson.com/data/products/15/3.jpg",
-                    "https://i.dummyjson.com/data/products/15/4.jpg",
-                    "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/15/1.jpg",
+                //     "https://i.dummyjson.com/data/products/15/2.jpg",
+                //     "https://i.dummyjson.com/data/products/15/3.jpg",
+                //     "https://i.dummyjson.com/data/products/15/4.jpg",
+                //     "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
+                // ]
             },
             {
                 id: 16,
@@ -289,12 +357,12 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/_/4_187_1.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/2/1.jpg",
-                    "https://i.dummyjson.com/data/products/2/2.jpg",
-                    "https://i.dummyjson.com/data/products/2/3.jpg",
-                    "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/2/1.jpg",
+                //     "https://i.dummyjson.com/data/products/2/2.jpg",
+                //     "https://i.dummyjson.com/data/products/2/3.jpg",
+                //     "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+                // ]
             },
             {
                 id: 17,
@@ -307,12 +375,12 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/9/49mm.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/17/1.jpg",
-                    "https://i.dummyjson.com/data/products/17/2.jpg",
-                    "https://i.dummyjson.com/data/products/17/3.jpg",
-                    "https://i.dummyjson.com/data/products/17/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/17/1.jpg",
+                //     "https://i.dummyjson.com/data/products/17/2.jpg",
+                //     "https://i.dummyjson.com/data/products/17/3.jpg",
+                //     "https://i.dummyjson.com/data/products/17/thumbnail.jpg"
+                // ]
             },
             {
                 id: 18,
@@ -325,13 +393,13 @@ export const getDataProduct = () => {
                 brand: "Dell",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/_/4_45_44.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/18/1.jpg",
-                    "https://i.dummyjson.com/data/products/18/2.jpg",
-                    "https://i.dummyjson.com/data/products/18/3.jpg",
-                    "https://i.dummyjson.com/data/products/18/4.jpg",
-                    "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/18/1.jpg",
+                //     "https://i.dummyjson.com/data/products/18/2.jpg",
+                //     "https://i.dummyjson.com/data/products/18/3.jpg",
+                //     "https://i.dummyjson.com/data/products/18/4.jpg",
+                //     "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
+                // ]
             },
             {
                 id: 19,
@@ -344,12 +412,12 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/a/tab_s8.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/19/1.jpg",
-                    "https://i.dummyjson.com/data/products/19/2.jpg",
-                    "https://i.dummyjson.com/data/products/19/3.png",
-                    "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/19/1.jpg",
+                //     "https://i.dummyjson.com/data/products/19/2.jpg",
+                //     "https://i.dummyjson.com/data/products/19/3.png",
+                //     "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
+                // ]
             },
             {
                 id: 20,
@@ -362,13 +430,13 @@ export const getDataProduct = () => {
                 brand: "Logitech",
                 category: "mouses",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_97.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/20/1.jpg",
-                    "https://i.dummyjson.com/data/products/20/2.jpg",
-                    "https://i.dummyjson.com/data/products/20/3.jpg",
-                    "https://i.dummyjson.com/data/products/20/4.jpg",
-                    "https://i.dummyjson.com/data/products/20/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/20/1.jpg",
+                //     "https://i.dummyjson.com/data/products/20/2.jpg",
+                //     "https://i.dummyjson.com/data/products/20/3.jpg",
+                //     "https://i.dummyjson.com/data/products/20/4.jpg",
+                //     "https://i.dummyjson.com/data/products/20/thumbnail.jpg"
+                // ]
             },
             {
                 id: 21,
@@ -381,11 +449,11 @@ export const getDataProduct = () => {
                 brand: "Garmin",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/a/garmin_37_.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/21/1.png",
-                    "https://i.dummyjson.com/data/products/21/2.jpg",
-                    "https://i.dummyjson.com/data/products/21/3.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/21/1.png",
+                //     "https://i.dummyjson.com/data/products/21/2.jpg",
+                //     "https://i.dummyjson.com/data/products/21/3.jpg"
+                // ]
             },
             {
                 id: 22,
@@ -398,11 +466,11 @@ export const getDataProduct = () => {
                 brand: "Anker",
                 category: "docks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/f/r/frame_1_3__2.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/22/1.jpg",
-                    "https://i.dummyjson.com/data/products/22/2.jpg",
-                    "https://i.dummyjson.com/data/products/22/3.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/22/1.jpg",
+                //     "https://i.dummyjson.com/data/products/22/2.jpg",
+                //     "https://i.dummyjson.com/data/products/22/3.jpg"
+                // ]
             },
             {
                 id: 23,
@@ -415,13 +483,13 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/ipad-pro-2021-11inch-grey_2.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/23/1.jpg",
-                    "https://i.dummyjson.com/data/products/23/2.jpg",
-                    "https://i.dummyjson.com/data/products/23/3.jpg",
-                    "https://i.dummyjson.com/data/products/23/4.jpg",
-                    "https://i.dummyjson.com/data/products/23/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/23/1.jpg",
+                //     "https://i.dummyjson.com/data/products/23/2.jpg",
+                //     "https://i.dummyjson.com/data/products/23/3.jpg",
+                //     "https://i.dummyjson.com/data/products/23/4.jpg",
+                //     "https://i.dummyjson.com/data/products/23/thumbnail.jpg"
+                // ]
             },
             {
                 id: 24,
@@ -434,13 +502,13 @@ export const getDataProduct = () => {
                 brand: "Xiaomi",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/3/13_prooo.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/24/1.jpg",
-                    "https://i.dummyjson.com/data/products/24/2.jpg",
-                    "https://i.dummyjson.com/data/products/24/3.jpg",
-                    "https://i.dummyjson.com/data/products/24/4.jpg",
-                    "https://i.dummyjson.com/data/products/24/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/24/1.jpg",
+                //     "https://i.dummyjson.com/data/products/24/2.jpg",
+                //     "https://i.dummyjson.com/data/products/24/3.jpg",
+                //     "https://i.dummyjson.com/data/products/24/4.jpg",
+                //     "https://i.dummyjson.com/data/products/24/thumbnail.jpg"
+                // ]
             },
             {
                 id: 25,
@@ -453,13 +521,13 @@ export const getDataProduct = () => {
                 brand: "Coros",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/c/o/coros.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/25/1.png",
-                    "https://i.dummyjson.com/data/products/25/2.jpg",
-                    "https://i.dummyjson.com/data/products/25/3.png",
-                    "https://i.dummyjson.com/data/products/25/4.jpg",
-                    "https://i.dummyjson.com/data/products/25/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/25/1.png",
+                //     "https://i.dummyjson.com/data/products/25/2.jpg",
+                //     "https://i.dummyjson.com/data/products/25/3.png",
+                //     "https://i.dummyjson.com/data/products/25/4.jpg",
+                //     "https://i.dummyjson.com/data/products/25/thumbnail.jpg"
+                // ]
             },
             {
                 id: 26,
@@ -472,14 +540,14 @@ export const getDataProduct = () => {
                 brand: "Acer",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_7.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/26/1.jpg",
-                    "https://i.dummyjson.com/data/products/26/2.jpg",
-                    "https://i.dummyjson.com/data/products/26/3.jpg",
-                    "https://i.dummyjson.com/data/products/26/4.jpg",
-                    "https://i.dummyjson.com/data/products/26/5.jpg",
-                    "https://i.dummyjson.com/data/products/26/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/26/1.jpg",
+                //     "https://i.dummyjson.com/data/products/26/2.jpg",
+                //     "https://i.dummyjson.com/data/products/26/3.jpg",
+                //     "https://i.dummyjson.com/data/products/26/4.jpg",
+                //     "https://i.dummyjson.com/data/products/26/5.jpg",
+                //     "https://i.dummyjson.com/data/products/26/thumbnail.jpg"
+                // ]
             },
             {
                 id: 27,
@@ -492,13 +560,13 @@ export const getDataProduct = () => {
                 brand: "Xiaomi",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/1/o1cn01ijop4f1slqk1fdzto_-2201438992231_1628774717_2.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/27/1.jpg",
-                    "https://i.dummyjson.com/data/products/27/2.jpg",
-                    "https://i.dummyjson.com/data/products/27/3.jpg",
-                    "https://i.dummyjson.com/data/products/27/4.jpg",
-                    "https://i.dummyjson.com/data/products/27/thumbnail.webp"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/27/1.jpg",
+                //     "https://i.dummyjson.com/data/products/27/2.jpg",
+                //     "https://i.dummyjson.com/data/products/27/3.jpg",
+                //     "https://i.dummyjson.com/data/products/27/4.jpg",
+                //     "https://i.dummyjson.com/data/products/27/thumbnail.webp"
+                // ]
             },
             {
                 id: 28,
@@ -511,13 +579,13 @@ export const getDataProduct = () => {
                 brand: "Lenovo",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/5/_/5.7_1.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/28/1.jpg",
-                    "https://i.dummyjson.com/data/products/28/2.jpg",
-                    "https://i.dummyjson.com/data/products/28/3.png",
-                    "https://i.dummyjson.com/data/products/28/4.jpg",
-                    "https://i.dummyjson.com/data/products/28/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/28/1.jpg",
+                //     "https://i.dummyjson.com/data/products/28/2.jpg",
+                //     "https://i.dummyjson.com/data/products/28/3.png",
+                //     "https://i.dummyjson.com/data/products/28/4.jpg",
+                //     "https://i.dummyjson.com/data/products/28/thumbnail.jpg"
+                // ]
             },
             {
                 id: 29,
@@ -530,13 +598,13 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/w/a/watch_se.png",
-                images: [
-                    "https://i.dummyjson.com/data/products/29/1.jpg",
-                    "https://i.dummyjson.com/data/products/29/2.jpg",
-                    "https://i.dummyjson.com/data/products/29/3.webp",
-                    "https://i.dummyjson.com/data/products/29/4.webp",
-                    "https://i.dummyjson.com/data/products/29/thumbnail.webp"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/29/1.jpg",
+                //     "https://i.dummyjson.com/data/products/29/2.jpg",
+                //     "https://i.dummyjson.com/data/products/29/3.webp",
+                //     "https://i.dummyjson.com/data/products/29/4.webp",
+                //     "https://i.dummyjson.com/data/products/29/thumbnail.webp"
+                // ]
             },
             {
                 id: 30,
@@ -549,12 +617,12 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/2/_/2_246_2.jpg",
-                images: [
-                    "https://i.dummyjson.com/data/products/30/1.jpg",
-                    "https://i.dummyjson.com/data/products/30/2.jpg",
-                    "https://i.dummyjson.com/data/products/30/3.jpg",
-                    "https://i.dummyjson.com/data/products/30/thumbnail.jpg"
-                ]
+                // images: [
+                //     "https://i.dummyjson.com/data/products/30/1.jpg",
+                //     "https://i.dummyjson.com/data/products/30/2.jpg",
+                //     "https://i.dummyjson.com/data/products/30/3.jpg",
+                //     "https://i.dummyjson.com/data/products/30/thumbnail.jpg"
+                // ]
             }
         ]
     };

@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthState
 import { auth } from "../firebase/fire";
 import '../assets/less/AllProducts.css';
 import AddProducts from '../components/AddProduct';
+import { Link } from 'react-router-dom';
+
 
 
 const AllProducts = ({ onAllProductsChange }) => {
@@ -153,9 +155,12 @@ const AllProducts = ({ onAllProductsChange }) => {
             <div className='row'>
                 {filteredProducts.map((product) => (
                     <div key={product.id} className='col-md-2'>
-                        <img src={product.thumbnail} alt={product.id} className='img-fluid' />
-                        <h3>{product.title}</h3>
-                        <p>Price: {product.price}</p>
+                        <Link to={`/product/${product.id}`}>
+                            <img src={product.thumbnail} alt={product.id} className='img-fluid' />
+                            <h3>{product.title}</h3>
+                            <p>Price: {product.price}</p>
+                        </Link>
+
                         {isLoggedIn && user?.email === 'admin@hoangha.com' && (
                             <div>
                                 <button className="btn btn-danger" onClick={() => handleDeleteProduct(product.id)}>Xoá</button>

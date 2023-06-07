@@ -1,0 +1,132 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .containPic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .smav {
+            display: flex;
+            border: 2px solid rgb(250, 249, 247);
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 6px;
+            gap: 10px;
+            justify-content: space-around;
+
+            .smav-item {
+                cursor: pointer;
+                border: #eee 1px solid;
+                text-align: center;
+            }
+
+            .smav-item.active {
+                border: #0bbf56 1px solid;
+            }
+        }
+
+        .imgs {
+            padding-top: 30px;
+            width: 300px;
+        }
+    }
+
+    .titleInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 300px;
+
+        .title {
+            background-color: rgb(6, 67, 19);
+            height: 32px;
+            width: 450px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            color: aliceblue;
+        }
+
+        .icon {
+            width: 35px;
+            height: 20px;
+            color: #e2d8d8;
+            position: relative;
+            top: 27px;
+            left: 60px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .choice2 {
+                margin-top: 30px;
+            }
+
+            .input {
+                .selectLabel2 {
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                    border-radius: 10px;
+                    height: 80px;
+                    cursor: pointer;
+                }
+
+                .select-label2.active {
+                    border: 2px solid #00483d;
+                }
+            }
+
+            .input {
+                display: flex;
+                position: relative;
+                top: 33px;
+                right: 16px;
+                gap: 10px;
+                background-color: #fffefee8;
+            }
+        }
+
+        .Btn {
+            margin-bottom: 100px;
+            display: flex;
+            height: 65px;
+            position: relative;
+            top: 100px;
+
+            .btn1 {
+                background: transparent linear-gradient(180deg, #fd475a 0%, #bf1e2d 100%) 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+                border: 0px;
+                padding: 12px 24px;
+                margin-right: 31px;
+            }
+
+            .btn2 {
+                background: transparent linear-gradient(180deg, #ff990e 0%, #ff6801 100%) 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+                border: 0px;
+                padding: 12px 24px;
+                width: 200px;
+            }
+        }
+
+        .price {
+            color: red;
+            font-size: 30px;
+            position: relative;
+            top: 100px;
+        }
+    }
+}

@@ -77,3 +77,68 @@
 .search-box .popup-inner .form-buttons button {
   margin-left: 10px;
 }
+.themsanpham {
+  width: 100%;
+}
+.product-item {
+  margin: 80px 0;
+}
+.product-item .product-container {
+  height: 100%;
+  margin-top: 20px;
+}
+.product-item .product-container .fluid-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-item .product-container .fluid-box img {
+  width: 80%;
+  margin: 0 auto;
+}
+.product-item .product-container .fluid-box h3 {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -10px;
+}
+.product-item .product-container .fluid-box p {
+  color: red;
+  text-align: center;
+  font-weight: 600;
+  margin-top: -10px;
+}
+.product-item .btn-box {
+  margin-top: 0;
+}
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.confirm-dialog-overlay .confirm-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.confirm-dialog-overlay .confirm-dialog h3 {
+  margin-top: 0;
+}
+.confirm-dialog-overlay .confirm-dialog .confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.confirm-dialog-overlay .confirm-dialog .confirm-buttons button {
+  margin-left: 10px;
+}

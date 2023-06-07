@@ -24,6 +24,29 @@ const AllProducts = ({ onAllProductsChange }) => {
 
     const [showAddProduct, setShowAddProduct] = useState(false);
 
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [productToDelete, setProductToDelete] = useState(null);
+    const handleDeleteProduct1 = (productId) => {
+        const product = filteredProducts.find((product) => product.id === productId);
+        setProductToDelete(product);
+        setShowConfirmDialog(true);
+    };
+    const handleConfirmDelete = () => {
+        // Xoá sản phẩm
+        deleteProductFromLocalStorage(productToDelete.id);
+        const updatedProducts = filteredProducts.filter((product) => product.id !== productToDelete.id);
+        setFilteredProducts(updatedProducts);
+
+        // Đóng hộp thoại xác nhận
+        setShowConfirmDialog(false);
+        setProductToDelete(null);
+    };
+
+    const handleCancelDelete = () => {
+        // Đóng hộp thoại xác nhận
+        setShowConfirmDialog(false);
+        setProductToDelete(null);
+    };
 
 
     const deleteProductFromLocalStorage = (productId) => {
@@ -151,20 +174,30 @@ const AllProducts = ({ onAllProductsChange }) => {
             return <p>Không có sản phẩm.</p>;
         }
 
+
+
+
+
+
+
         return (
             <div className='row'>
                 {filteredProducts.map((product) => (
-                    <div key={product.id} className='col-md-2'>
-                        <Link to={`/product/${product.id}`}>
-                            <img src={product.thumbnail} alt={product.id} className='img-fluid' />
-                            <h3>{product.title}</h3>
-                            <p>Price: {product.price}</p>
+                    <div key={product.id} className='col-md-2  product-item'>
+                        <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <div className="product-container">
+                                <div className="fluid-box product-details">
+                                    <img src={product.thumbnail} alt={product.id} className='img-fluid' />
+                                    <h3>{product.title}</h3>
+                                    <p>{product.price.toLocaleString()}</p>
+                                </div>
+                            </div>
                         </Link>
 
                         {isLoggedIn && user?.email === 'admin@hoangha.com' && (
-                            <div>
-                                <button className="btn btn-danger" onClick={() => handleDeleteProduct(product.id)}>Xoá</button>
-                                <button className="btn btn-primary" onClick={() => openPopup(product.id, product.title, product.price, product.thumbnail)}>Chỉnh Sửa</button>
+                            <div className="btn-box">
+                                <button className="btn btn-danger product-buttons" onClick={() => handleDeleteProduct1(product.id)}>Xoá</button>
+                                <button className="btn btn-primary product-buttons" onClick={() => openPopup(product.id, product.title, product.price, product.thumbnail)}>Chỉnh Sửa</button>
                             </div>
                         )}
                     </div>
@@ -206,7 +239,21 @@ const AllProducts = ({ onAllProductsChange }) => {
     return (
         <div className='container'>
 
-
+            {showConfirmDialog && (
+                <div className="confirm-dialog-overlay">
+                    <div className="confirm-dialog">
+                        <h3>Bạn có thực sự muốn xoá không?</h3>
+                        <div className="confirm-buttons">
+                            <button className="btn btn-danger" onClick={handleConfirmDelete}>
+                                Có
+                            </button>
+                            <button className="btn btn-secondary" onClick={handleCancelDelete}>
+                                Không
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className='btn-group'>
 
@@ -268,7 +315,7 @@ const AllProducts = ({ onAllProductsChange }) => {
 
             {renderBrandButtons()}
             {isLoggedIn && user?.email === 'admin@hoangha.com' && (
-                <button className="btn btn-primary" onClick={handleAddProduct}>Thêm Sản Phẩm Mới</button>
+                <button className="btn btn-primary themsanpham" onClick={handleAddProduct}>Thêm Sản Phẩm Mới</button>
             )}
             <br />
             {renderProducts()}

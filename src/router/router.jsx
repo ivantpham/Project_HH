@@ -6,6 +6,7 @@ import ProductDetails from '../components/ProductDetails';
 import PageSignUp from '@Pages/PageSignUp';
 import PageSignIn from '@Pages/PageSignIn';
 import PageDemo from 'pages/PageDemo';
+import Page404 from '../components/Page404';
 
 export const routes = [
   { title: 'Home', path: '/', component: PageHome, isShowMenu: true },
@@ -14,6 +15,7 @@ export const routes = [
   { title: 'Sign Up', path: '/sign-up', component: PageSignUp, isShowMenu: true },
   { title: 'Sign In', path: '/sign-in', component: PageSignIn, isShowMenu: true },
   { title: 'Page demo', path: '/demo', component: PageDemo, isShowMenu: true },
+  { title: 'Page Not Found', path: '*', component: Page404, isShowMenu: false },
 ]
 
 const router = createBrowserRouter(createRoutesFromElements(

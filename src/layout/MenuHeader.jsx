@@ -148,6 +148,37 @@ export default function MenuHeader() {
 
   // Hàm SEARCH
 
+
+  // HÀM UPLOAD ẢNH ĐẠI DIỆN
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setSelectedImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleClosePopupPopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleImageUpdate = () => {
+    // Cập nhật và thay thế ảnh
+    // Ví dụ:
+    const newImage = "https://example.com/new-image.jpg";
+    setSelectedImage(newImage);
+    setIsPopupOpen(false);
+  };
+
+  // HÀM UPLOAD ẢNH ĐẠI DIỆN
+
   return (
     <>
       <header className={`headers ${isLoggedIn && !isLoggedOut ? 'fixed-header' : ''}`}>
@@ -166,10 +197,10 @@ export default function MenuHeader() {
             <>
               <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  <button type="button" className="d-flex align-items-center">
+                  <button type="button" className="d-flex align-items-center ">
                     <div className="success_sign d-flex justify-content-around ">
                       <div className="image_account">
-                        <img src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" className="img-acc" />
+                        <img src={selectedImage ? selectedImage : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"} alt="" className="img-acc" />
                       </div>
                       <div className="name_account" >{user?.email}</div>
                     </div>
@@ -180,6 +211,11 @@ export default function MenuHeader() {
                   <Dropdown.Item>
                     <li>
                       <button onClick={handleLogout}>Sign Out</button>
+                    </li>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <li>
+                      <button onClick={handleDropdownToggle2}>Thay Đổi Ảnh Đại Diện</button>
                     </li>
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -222,6 +258,22 @@ export default function MenuHeader() {
         </div>
       )}
 
+      <div className="overlay" style={isPopupOpen ? { display: "block" } : { display: "none" }}>
+        <div className="popup">
+          <div className="upLoadBox">
+            <h3>Thay Đổi Ảnh Đại Diện</h3>
+            <div className="upLoadIMG">
+              <input type="file" accept="image/*" onChange={handleImageChange} />
+            </div>
+            {selectedImage && <img src={selectedImage} alt="Selected" />}
+
+          </div>
+          <div className="buttons">
+            <button onClick={handleClosePopupPopup}>Hoàn Tất</button>
+          </div>
+        </div>
+      </div>
+
       {!isSearchEmpty && !isSignInPage && !isSignUpPage && (
         <ValueContext.Provider value={apiProducts}>
           <div className="containers">
@@ -232,3 +284,4 @@ export default function MenuHeader() {
     </>
   );
 }
+

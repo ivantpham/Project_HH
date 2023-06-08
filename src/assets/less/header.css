@@ -40,18 +40,18 @@ header .nav .success_sign {
   height: 50%;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #019a82;
   border-radius: 8px;
 }
 header .nav .success_sign .image_account {
-  width: 30px;
+  width: 20px;
+  height: 20px;
   margin: 0 10px;
 }
 header .nav .success_sign .name_account {
   margin: 0 10px;
 }
 header .nav .success_sign img {
-  border-radius: 50%;
+  border-radius: 30%;
 }
 header nav,
 header .nav_item {
@@ -102,6 +102,61 @@ header .nav_item {
   margin-bottom: 20px;
   text-align: center;
 }
+.dropdown-item li:hover {
+  background: #019a82;
+}
+#dropdown-basic {
+  background: #019a82;
+  margin-right: -100px;
+}
 .Product-search-list .Product-search-list p {
   margin: 5px 0;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background-color: #019a82;
+  padding: 20px;
+}
+.upLoadBox {
+  /* Thêm CSS cho upLoadBox */
+}
+.upLoadBox img {
+  width: 50%;
+  margin: 0 auto;
+}
+.upLoadBox h3 {
+  text-align: center;
+  margin: 20px auto;
+  color: #fff;
+}
+.upLoadBox .upLoadIMG p {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+}
+.upLoadBox .upLoadIMG input {
+  margin: 10px 20px 5px 0;
+}
+.upLoadBox .buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.upLoadBox .buttonGroup button {
+  margin-left: 10px;
 }

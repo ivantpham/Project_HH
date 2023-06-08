@@ -178,12 +178,25 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/p/r/pro_2021.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/6/1.png",
-                //     "https://i.dummyjson.com/data/products/6/2.jpg",
-                //     "https://i.dummyjson.com/data/products/6/3.png",
-                //     "https://i.dummyjson.com/data/products/6/4.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Silver',
+                        price: '42,890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/10/s0.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/10/s0.png',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Space Gray',
+                        price: '42,890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/10/g0.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/10/g0.png',
+
+                    }
+
+                ]
             },
             {
                 id: 7,
@@ -196,12 +209,17 @@ export const getDataProduct = () => {
                 brand: "ASUS",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/1/11h50.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/7/1.jpg",
-                //     "https://i.dummyjson.com/data/products/7/2.jpg",
-                //     "https://i.dummyjson.com/data/products/7/3.jpg",
-                //     "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Xam',
+                        price: '17,890,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/07/18/image-removebg-preview-1_637937326256886528.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/07/18/image-removebg-preview-1_637937326256886528.png',
+
+                    },
+
+                ]
             },
             {
                 id: 8,
@@ -214,9 +232,40 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/2/s23-ultra-tim.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/3/1.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Tim',
+                        price: '26,030,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/02/image-removebg-preview-3_638109032737347141.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/02/image-removebg-preview-3_638109032737347141.png',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Den',
+                        price: '26,030,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/02/image-removebg-preview-2_638109032737377121.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/02/image-removebg-preview-2_638109032737377121.png',
+
+                    },
+                    {
+                        id: 3,
+                        name: 'Kem',
+                        price: '26,030,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/02/image-removebg-preview-4.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/02/image-removebg-preview-4.png',
+
+                    },
+                    {
+                        id: 4,
+                        name: 'Xanh',
+                        price: '26,030,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2023/02/02/image-removebg-preview_638109032737367137.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2023/02/02/image-removebg-preview_638109032737367137.png',
+
+                    },
+                ]
             },
             {
                 id: 9,
@@ -229,13 +278,17 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/a/tab_s8_ultra.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/9/1.jpg",
-                //     "https://i.dummyjson.com/data/products/9/2.png",
-                //     "https://i.dummyjson.com/data/products/9/3.png",
-                //     "https://i.dummyjson.com/data/products/9/4.jpg",
-                //     "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Graphite',
+                        price: '25,060,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/02/10/thumb.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/02/10/thumb.png',
+
+                    },
+
+                ]
             },
             {
                 id: 10,
@@ -248,12 +301,17 @@ export const getDataProduct = () => {
                 brand: "Huawei",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/t/gt3_pro.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/10/1.jpg",
-                //     "https://i.dummyjson.com/data/products/10/2.jpg",
-                //     "https://i.dummyjson.com/data/products/10/3.jpg",
-                //     "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Màu Gốm',
+                        price: '10,490,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/05/18/mkt-frigga-product-lmage-ceramic-front-30-left-en-hq-png-800x800-20220413.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/05/18/mkt-frigga-product-lmage-ceramic-front-30-left-en-hq-png-800x800-20220413.png',
+
+                    },
+
+                ]
             },
             {
                 id: 11,
@@ -266,12 +324,17 @@ export const getDataProduct = () => {
                 brand: "Razer",
                 category: "mouses",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_11__2_53.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/11/1.jpg",
-                //     "https://i.dummyjson.com/data/products/11/2.jpg",
-                //     "https://i.dummyjson.com/data/products/11/3.jpg",
-                //     "https://i.dummyjson.com/data/products/11/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '890000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/07/28/image-removebg-preview-7_637946143662389996.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/07/28/image-removebg-preview-7_637946143662389996.png',
+
+                    },
+
+                ]
             },
             {
                 id: 12,
@@ -284,13 +347,17 @@ export const getDataProduct = () => {
                 brand: "Aukey",
                 category: "powerbanks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/h/4h41_2.png",
-                //     images: [
-                //         "https://i.dummyjson.com/data/products/12/1.jpg",
-                //         "https://i.dummyjson.com/data/products/12/2.jpg",
-                //         "https://i.dummyjson.com/data/products/12/3.png",
-                //         "https://i.dummyjson.com/data/products/12/4.jpg",
-                //         "https://i.dummyjson.com/data/products/12/thumbnail.jpg"
-                //     ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Black',
+                        price: '550,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2020/11/04/ue10047pq.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2020/11/04/ue10047pq.png',
+
+                    },
+
+                ]
             },
             {
                 id: 13,
@@ -303,11 +370,25 @@ export const getDataProduct = () => {
                 brand: "OnePlus",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/n/oneplus_11_-_black_-_rgb.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/5/1.jpg",
-                //     "https://i.dummyjson.com/data/products/5/2.jpg",
-                //     "https://i.dummyjson.com/data/products/5/3.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Silver',
+                        price: '26,990,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/10/24/image-removebg-preview-1_638022082728321716.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/10/24/image-removebg-preview-1_638022082728321716.png',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Gray',
+                        price: '26,990,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/10/24/image-removebg-preview_638022082728321716.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/10/24/image-removebg-preview_638022082728321716.png',
+
+                    },
+
+                ]
             },
             {
                 id: 14,
@@ -320,12 +401,17 @@ export const getDataProduct = () => {
                 brand: "Ugreen",
                 category: "docks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/f/r/frame_641_3_.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/14/1.jpg",
-                //     "https://i.dummyjson.com/data/products/14/2.jpg",
-                //     "https://i.dummyjson.com/data/products/14/3.jpg",
-                //     "https://i.dummyjson.com/data/products/14/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '1.150.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/c/u/cu-sac-nhanh-ugreen-wall-charger-3c1a-100w-cd226-1_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/f/r/frame_642_1_.png',
+
+                    },
+
+                ]
             },
             {
                 id: 15,
@@ -338,13 +424,25 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/ipad-pro-13-select-wifi-spacegray-202210-02_3_3.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/15/1.jpg",
-                //     "https://i.dummyjson.com/data/products/15/2.jpg",
-                //     "https://i.dummyjson.com/data/products/15/3.jpg",
-                //     "https://i.dummyjson.com/data/products/15/4.jpg",
-                //     "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Xám',
+                        price: '24.290.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/i/p/ipad-pro-13-select-wifi-spacegray-202210-02_1_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/i/p/ipad-pro-13-select-wifi-spacegray-202210-02_1_1.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Bạc',
+                        price: '24.290.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/b/a/bacjccc_2.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/i/p/ipad-pro-13-select-wifi-silver-202210-01_1_1.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 16,
@@ -357,12 +455,25 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/_/4_187_1.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/2/1.jpg",
-                //     "https://i.dummyjson.com/data/products/2/2.jpg",
-                //     "https://i.dummyjson.com/data/products/2/3.jpg",
-                //     "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '10.350.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/6/_/6_130.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/6/_/6_130.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Trắng',
+                        price: '10.590.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone11-white-select-2019_3.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/3/_/3_225.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 17,
@@ -375,12 +486,33 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/9/49mm.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/17/1.jpg",
-                //     "https://i.dummyjson.com/data/products/17/2.jpg",
-                //     "https://i.dummyjson.com/data/products/17/3.jpg",
-                //     "https://i.dummyjson.com/data/products/17/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Orange',
+                        price: '18,990,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/09/apple-watch-ultra-2.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/09/apple-watch-ultra-2.png',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Green',
+                        price: '18,990,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/09/apple-watch-ultra-4.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/09/apple-watch-ultra-4.png',
+
+                    },
+                    {
+                        id: 3,
+                        name: 'Starlight',
+                        price: '18,990,000',
+                        url: 'https://cdn.hoanghamobile.com/i/preview/Uploads/2022/09/09/apple-watch-ultra-3.png',
+                        urlSmall: 'https://cdn.hoanghamobile.com/i/productlist/dst/Uploads/2022/09/09/apple-watch-ultra-3.png',
+
+                    },
+
+                ]
             },
             {
                 id: 18,
@@ -393,13 +525,18 @@ export const getDataProduct = () => {
                 brand: "Dell",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/4/_/4_45_44.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/18/1.jpg",
-                //     "https://i.dummyjson.com/data/products/18/2.jpg",
-                //     "https://i.dummyjson.com/data/products/18/3.jpg",
-                //     "https://i.dummyjson.com/data/products/18/4.jpg",
-                //     "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '30,230,000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/l/a/laptop-dell-gaming-g3-15-3500-70253721-1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/l/a/laptop-dell-gaming-g3-15-3500-70253721-1.jpg',
+
+                    },
+
+
+                ]
             },
             {
                 id: 19,
@@ -412,12 +549,25 @@ export const getDataProduct = () => {
                 brand: "Samsung",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/a/tab_s8.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/19/1.jpg",
-                //     "https://i.dummyjson.com/data/products/19/2.jpg",
-                //     "https://i.dummyjson.com/data/products/19/3.png",
-                //     "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Bạc',
+                        price: '14.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/t/a/tab_s8.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/t/a/tab_s8.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Xám',
+                        price: '14.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/s/e/series_tab_s8001.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/s/e/series_tab_s8001.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 20,
@@ -430,13 +580,25 @@ export const getDataProduct = () => {
                 brand: "Logitech",
                 category: "mouses",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/r/group_97.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/20/1.jpg",
-                //     "https://i.dummyjson.com/data/products/20/2.jpg",
-                //     "https://i.dummyjson.com/data/products/20/3.jpg",
-                //     "https://i.dummyjson.com/data/products/20/4.jpg",
-                //     "https://i.dummyjson.com/data/products/20/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '2.390.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/1/_/1_346.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/_/1_346.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Trắng',
+                        price: '2.390.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/1/2/12_37_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/2/12_37_1.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 21,
@@ -449,11 +611,33 @@ export const getDataProduct = () => {
                 brand: "Garmin",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/g/a/garmin_37_.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/21/1.png",
-                //     "https://i.dummyjson.com/data/products/21/2.jpg",
-                //     "https://i.dummyjson.com/data/products/21/3.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen viền titan - cao su',
+                        price: '17.500.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/d/o/dong-ho-thong-minh-garmin-fenix-7-sapphire-solar-1_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/d/o/dong-ho-thong-minh-garmin-fenix-7-sapphire-solar-3.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Đen viền titan - dây titan',
+                        price: '22.490.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/i/titan_2.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/d/o/dong-ho-thong-minh-garmin-fenix-7-sapphire-solar-3.jpg',
+
+                    },
+                    {
+                        id: 3,
+                        name: 'Xanh viền titan - cao su',
+                        price: '17.500.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/w/h/white_3_4.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/d/o/dong-ho-thong-minh-garmin-fenix-7-sapphire-solar-3.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 22,
@@ -466,11 +650,18 @@ export const getDataProduct = () => {
                 brand: "Anker",
                 category: "docks",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/f/r/frame_1_3__2.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/22/1.jpg",
-                //     "https://i.dummyjson.com/data/products/22/2.jpg",
-                //     "https://i.dummyjson.com/data/products/22/3.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Trắng',
+                        price: '290.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/2/0/200914_114233_12345_1.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/6/16_3_1.png',
+
+                    },
+
+
+                ]
             },
             {
                 id: 23,
@@ -483,13 +674,25 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/ipad-pro-2021-11inch-grey_2.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/23/1.jpg",
-                //     "https://i.dummyjson.com/data/products/23/2.jpg",
-                //     "https://i.dummyjson.com/data/products/23/3.jpg",
-                //     "https://i.dummyjson.com/data/products/23/4.jpg",
-                //     "https://i.dummyjson.com/data/products/23/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '19.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/i/p/ipad-pro-2021-11inch-grey_2.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/i/p/ipad-pro-2021-11inch-grey_2.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Trắng',
+                        price: '19.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/a/p/apple_ipad_pro_2021_silver_11_1-_tejar.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/a/p/apple_ipad_pro_2021_silver_11_1-_tejar.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 24,
@@ -502,13 +705,25 @@ export const getDataProduct = () => {
                 brand: "Xiaomi",
                 category: "smartphones",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/3/13_prooo.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/24/1.jpg",
-                //     "https://i.dummyjson.com/data/products/24/2.jpg",
-                //     "https://i.dummyjson.com/data/products/24/3.jpg",
-                //     "https://i.dummyjson.com/data/products/24/4.jpg",
-                //     "https://i.dummyjson.com/data/products/24/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '24.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/1/3/13_prooo_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/3/13_prooo.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Trắng',
+                        price: '24.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/1/3/13_prooo_3_.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/3/13_prooo_3_.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 25,
@@ -521,13 +736,25 @@ export const getDataProduct = () => {
                 brand: "Coros",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/c/o/coros.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/25/1.png",
-                //     "https://i.dummyjson.com/data/products/25/2.jpg",
-                //     "https://i.dummyjson.com/data/products/25/3.png",
-                //     "https://i.dummyjson.com/data/products/25/4.jpg",
-                //     "https://i.dummyjson.com/data/products/25/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Cam',
+                        price: '17.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/4/4/44_1_7.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/4/4/44_1_7.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Xam',
+                        price: '17.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/x358,webp,q100/media/catalog/product/4/1/41_1_9.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/4/1/41_1_9.jpg',
+
+                    },
+
+                ]
             },
             {
                 id: 26,
@@ -540,14 +767,18 @@ export const getDataProduct = () => {
                 brand: "Acer",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/t/e/text_ng_n_7.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/26/1.jpg",
-                //     "https://i.dummyjson.com/data/products/26/2.jpg",
-                //     "https://i.dummyjson.com/data/products/26/3.jpg",
-                //     "https://i.dummyjson.com/data/products/26/4.jpg",
-                //     "https://i.dummyjson.com/data/products/26/5.jpg",
-                //     "https://i.dummyjson.com/data/products/26/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Đen',
+                        price: '20.290.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60790_laptop_acer_gaming_nitro_5_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/_/0/_0003_60790_laptop_acer_gaming_nitro_5.jpg',
+
+                    },
+
+
+                ]
             },
             {
                 id: 27,
@@ -560,13 +791,18 @@ export const getDataProduct = () => {
                 brand: "Xiaomi",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/o/1/o1cn01ijop4f1slqk1fdzto_-2201438992231_1628774717_2.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/27/1.jpg",
-                //     "https://i.dummyjson.com/data/products/27/2.jpg",
-                //     "https://i.dummyjson.com/data/products/27/3.jpg",
-                //     "https://i.dummyjson.com/data/products/27/4.jpg",
-                //     "https://i.dummyjson.com/data/products/27/thumbnail.webp"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Xám',
+                        price: '9.390.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/o/1/o1cn01laervj1slqjxkeekw_-2201438992231_1628773507_1628827052_1_2.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/o/1/o1cn01laervj1slqjxkeekw_-2201438992231_1628773507_1628827052_1_1.jpg',
+
+                    },
+
+
+                ]
             },
             {
                 id: 28,
@@ -579,13 +815,18 @@ export const getDataProduct = () => {
                 brand: "Lenovo",
                 category: "laptops",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/5/_/5.7_1.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/28/1.jpg",
-                //     "https://i.dummyjson.com/data/products/28/2.jpg",
-                //     "https://i.dummyjson.com/data/products/28/3.png",
-                //     "https://i.dummyjson.com/data/products/28/4.jpg",
-                //     "https://i.dummyjson.com/data/products/28/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Trắng',
+                        price: '36.990.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0000_63923_laptop_lenovo_legion_5_8_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/5/_/5.7_1.jpg',
+
+                    },
+
+
+                ]
             },
             {
                 id: 29,
@@ -598,13 +839,31 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "watches",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/w/a/watch_se.png",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/29/1.jpg",
-                //     "https://i.dummyjson.com/data/products/29/2.jpg",
-                //     "https://i.dummyjson.com/data/products/29/3.webp",
-                //     "https://i.dummyjson.com/data/products/29/4.webp",
-                //     "https://i.dummyjson.com/data/products/29/thumbnail.webp"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Trắng vàng',
+                        price: '5.950.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-10-26_10-46-46_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/2/_/2_248.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Bạc',
+                        price: '5.950.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/8/5/852321771_1663131355.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/_/1_258.jpg',
+                    },
+                    {
+                        id: 3,
+                        name: 'Đen',
+                        price: '5.950.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/3/_/3_231_1.jpg',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/4/_/4_192.jpg',
+
+                    },
+                ]
             },
             {
                 id: 30,
@@ -617,12 +876,39 @@ export const getDataProduct = () => {
                 brand: "Apple",
                 category: "tablets",
                 thumbnail: "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/2/_/2_246_2.jpg",
-                // images: [
-                //     "https://i.dummyjson.com/data/products/30/1.jpg",
-                //     "https://i.dummyjson.com/data/products/30/2.jpg",
-                //     "https://i.dummyjson.com/data/products/30/3.jpg",
-                //     "https://i.dummyjson.com/data/products/30/thumbnail.jpg"
-                // ]
+                variants: [
+                    {
+                        id: 1,
+                        name: 'Xám',
+                        price: '15.490.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-6-1_5.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/2/_/2_246_2.jpg',
+
+                    },
+                    {
+                        id: 2,
+                        name: 'Trắng vàng',
+                        price: '15.490.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-6-4_5.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/1/_/1_256_1.jpg',
+                    },
+                    {
+                        id: 3,
+                        name: 'Hồng',
+                        price: '15.490.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-6-2_5.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/3/_/3_229_1.jpg',
+
+                    },
+                    {
+                        id: 4,
+                        name: 'Tím',
+                        price: '15.490.000',
+                        url: 'https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-6-3_5.png',
+                        urlSmall: 'https://cdn2.cellphones.com.vn/58x58,webp,q100/media/catalog/product/4/_/4_190_1.jpg',
+
+                    },
+                ]
             }
         ]
     };

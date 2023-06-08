@@ -190,7 +190,10 @@ export default function MenuHeader() {
             <li className="nav_item">
               <Search onSearching={onSearchProduct} placeholder={'Nhập tên sản phẩm'} />
               <a href="#" className="nav_link">Bảo Hành</a>
-              <a href="#" className="nav_link">Tra Cứu Đơn Hàng</a>
+              <Link className="logo" to={'/chat'} >
+                <a href="#" className="nav_link">Chat AI</a>
+
+              </Link>
             </li>
           </ul>
           {isLoggedIn && !isLoggedOut ? (

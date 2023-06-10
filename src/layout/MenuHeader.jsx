@@ -146,6 +146,11 @@ export default function MenuHeader() {
     setIsBoxSearchVisible(value !== ''); // Kiểm tra xem có dữ liệu tìm kiếm hay không
   };
 
+  const handleSelectProduct = (item) => {
+    // Thực hiện các công việc khi chọn sản phẩm ở đây
+    setIsBoxSearchVisible(false); // Ẩn div box-search
+  };
+
   // Hàm SEARCH
 
 
@@ -245,11 +250,16 @@ export default function MenuHeader() {
             {products.length > 0 ? (
               products.map((item) => (
                 <div key={item.id} className="box-items d-flex justify-content-between align-items-center">
-                  <img src={item.thumbnail} alt="Product Thumbnail" />
 
-                  <p>{item.name}</p>
-                  <p>{item.title}</p>
-                  <p>{item.price}</p>
+                  <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => handleSelectProduct(item)}>
+                    <img src={item.thumbnail} alt="Product Thumbnail" />
+
+                    <p>{item.name}</p>
+                    <p>{item.title}</p>
+                    <p>{item.price}</p>
+                  </Link>
+
+
                 </div>
               ))
             ) : (
@@ -265,25 +275,22 @@ export default function MenuHeader() {
         <div className="popup">
           <div className="upLoadBox">
             <h3>Thay Đổi Ảnh Đại Diện</h3>
-            <div className="upLoadIMG">
-              <input type="file" accept="image/*" onChange={handleImageChange} />
+            <div className="upLoadImage">
+              <div className="imagePreview">
+                <img src={selectedImage ? selectedImage : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"} alt="" className="imagePrev" />
+              </div>
+              <div className="imageChoose">
+                <label htmlFor="file-input">
+                  <span>Chọn Ảnh</span>
+                </label>
+                <input id="file-input" type="file" onChange={handleImageChange} accept="image/*" />
+                <button onClick={handleImageUpdate}>Cập Nhật</button>
+              </div>
             </div>
-            {selectedImage && <img src={selectedImage} alt="Selected" />}
-
           </div>
-          <div className="buttons">
-            <button onClick={handleClosePopupPopup}>Hoàn Tất</button>
-          </div>
+          <div className="closePopup" onClick={handleClosePopupPopup}></div>
         </div>
       </div>
-
-      {!isSearchEmpty && !isSignInPage && !isSignUpPage && (
-        <ValueContext.Provider value={apiProducts}>
-          <div className="containers">
-            {/* <AllProducts /> */}
-          </div>
-        </ValueContext.Provider>
-      )}
     </>
   );
 }

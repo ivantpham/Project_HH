@@ -7,11 +7,17 @@
   align-items: center;
   height: 100vh;
 }
+
+.titleInfo {
+  padding-left: 100px;
+}
+
 .container .containPic {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .container .containPic .smav {
   display: flex;
   border: 2px solid #faf9f7;
@@ -21,24 +27,29 @@
   gap: 10px;
   justify-content: space-around;
 }
+
 .container .containPic .smav .smav-item {
   cursor: pointer;
   border: #eee 1px solid;
   text-align: center;
 }
+
 .container .containPic .smav .smav-item.active {
   border: #0bbf56 1px solid;
 }
+
 .container .containPic .imgs {
   padding-top: 30px;
   width: 300px;
 }
+
 .container .titleInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-right: 300px;
 }
+
 .container .titleInfo .title {
   background-color: #064313;
   height: 32px;
@@ -49,22 +60,26 @@
   justify-content: space-evenly;
   color: aliceblue;
 }
+
 .container .titleInfo .icon {
   width: 35px;
   height: 20px;
   color: #e2d8d8;
   position: relative;
   top: 27px;
-  left: 60px;
+  right: 150px;
 }
+
 .container .titleInfo .info {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .container .titleInfo .info .choice2 {
   margin-top: 30px;
 }
+
 .container .titleInfo .info .input .selectLabel2 {
   border: 1px solid #ccc;
   padding: 10px;
@@ -72,17 +87,20 @@
   height: 80px;
   cursor: pointer;
 }
+
 .container .titleInfo .info .input .select-label2.active {
   border: 2px solid #00483d;
 }
+
 .container .titleInfo .info .input {
   display: flex;
   position: relative;
   top: 33px;
-  right: 16px;
+  left: 26px;
   gap: 10px;
   background-color: #fffefee8;
 }
+
 .container .titleInfo .Btn {
   margin-bottom: 100px;
   display: flex;
@@ -90,6 +108,7 @@
   position: relative;
   top: 100px;
 }
+
 .container .titleInfo .Btn .btn1 {
   background: transparent linear-gradient(180deg, #fd475a 0%, #bf1e2d 100%) 0% 0% no-repeat padding-box;
   border-radius: 8px;
@@ -97,6 +116,7 @@
   padding: 12px 24px;
   margin-right: 31px;
 }
+
 .container .titleInfo .Btn .btn2 {
   background: transparent linear-gradient(180deg, #ff990e 0%, #ff6801 100%) 0% 0% no-repeat padding-box;
   border-radius: 8px;
@@ -104,9 +124,10 @@
   padding: 12px 24px;
   width: 200px;
 }
+
 .container .titleInfo .price {
   color: red;
   font-size: 30px;
   position: relative;
-  top: 100px;
+  top: 56px;
 }

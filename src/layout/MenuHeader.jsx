@@ -238,7 +238,7 @@ export default function MenuHeader() {
       </header>
 
       {isBoxSearchVisible && (
-        <div className="box-search">
+        <div className="box-search" style={{ overflow: 'auto' }}>
           <div className="Product-search-list d-flex flex-column mb-3">
             <div
               className="btn-close"

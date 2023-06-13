@@ -8,6 +8,8 @@ import PageSignIn from '@Pages/PageSignIn';
 import PageDemo from 'pages/PageDemo';
 import Page404 from '../components/Page404';
 import PageChat from '../pages/PageChat';
+import CartProduct from '../components/CartProduct';
+
 
 export const routes = [
   { title: 'Home', path: '/', component: PageHome, isShowMenu: true },
@@ -15,6 +17,7 @@ export const routes = [
   { title: 'Details Product', path: '/product/:id', component: ProductDetails, isShowMenu: true },
   { title: 'Sign Up', path: '/sign-up', component: PageSignUp, isShowMenu: true },
   { title: 'Sign In', path: '/sign-in', component: PageSignIn, isShowMenu: true },
+  { title: 'Cart', path: '/cart', component: CartProduct, isShowMenu: true },
   { title: 'Chat With HoangHa', path: '/chat', component: PageChat, isShowMenu: true },
   { title: 'Page demo', path: '/demo', component: PageDemo, isShowMenu: true },
   { title: 'Page Not Found', path: '*', component: Page404, isShowMenu: false },

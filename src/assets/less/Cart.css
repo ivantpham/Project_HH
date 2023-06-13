@@ -1,0 +1,7 @@
+.card-box-wrapper {
+  display: flex;
+  align-items: center;
+}
+.card-img-top {
+  flex-shrink: 0;
+}

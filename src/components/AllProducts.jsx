@@ -21,6 +21,9 @@ const AllProducts = ({ onAllProductsChange }) => {
     const [editedPrice, setEditedPrice] = useState('');
     const [editedThumbnail, setEditedThumbnail] = useState('');
 
+    const [cartItems, setCartItems] = useState([]);
+
+
 
     const [showAddProduct, setShowAddProduct] = useState(false);
 
@@ -41,6 +44,12 @@ const AllProducts = ({ onAllProductsChange }) => {
         setShowConfirmDialog(false);
         setProductToDelete(null);
     };
+
+
+    const handleAddToCart = (product) => {
+        setCartItems([...cartItems, product]);
+    };
+
 
     const handleCancelDelete = () => {
         // Đóng hộp thoại xác nhận
@@ -174,12 +183,6 @@ const AllProducts = ({ onAllProductsChange }) => {
             return <p>Không có sản phẩm.</p>;
         }
 
-
-
-
-
-
-
         return (
             <div className='row'>
                 {filteredProducts.map((product) => (
@@ -200,11 +203,21 @@ const AllProducts = ({ onAllProductsChange }) => {
                                 <button className="btn btn-primary product-buttons" onClick={() => openPopup(product.id, product.title, product.price, product.thumbnail)}>Chỉnh Sửa</button>
                             </div>
                         )}
+
+                        <button
+                            className="btn btn-primary product-buttons"
+                            onClick={() => handleAddToCart(product)}
+                            style={{ display: user?.email === 'admin@hoangha.com' ? 'none' : 'block' }}
+                        >
+                            Thêm Vào Giỏ Hàng
+                        </button>
+
                     </div>
                 ))}
             </div>
         );
     };
+
 
     const renderBrandButtons = () => {
         let filteredBrands = brands;

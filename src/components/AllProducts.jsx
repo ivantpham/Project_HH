@@ -47,7 +47,17 @@ const AllProducts = ({ onAllProductsChange }) => {
 
 
     const handleAddToCart = (product) => {
-        setCartItems([...cartItems, product]);
+        const storedData = localStorage.getItem('ProductsCart');
+        let cartItems = [];
+
+        if (storedData) {
+            cartItems = JSON.parse(storedData);
+        }
+
+        cartItems.push(product);
+        localStorage.setItem('ProductsCart', JSON.stringify(cartItems));
+
+        setCartItems([...cartItems]);
     };
 
 
